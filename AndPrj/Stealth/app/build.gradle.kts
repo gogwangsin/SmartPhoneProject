@@ -6,6 +6,10 @@ android {
     namespace = "kr.ac.tukorea.ge.and.gwang.stealth"
     compileSdk = 35
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "kr.ac.tukorea.ge.and.gwang.stealth"
         minSdk = 24
