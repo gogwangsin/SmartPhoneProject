@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Stealth"
 include(":app")
+include("a2dg")
  
