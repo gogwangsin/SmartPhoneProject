@@ -18,6 +18,7 @@ public class Player extends Sprite {
     private static final float SPEED_X = 700.f;
     private static final float SPEED_Y = 500.f;
     private static final float RADIUS = 100f;
+    private static final float GRAVITY = 300f;
     private float minX, maxX, minY, maxY;
     // 이 경계면을 나가면 안움직인다
 
@@ -34,7 +35,7 @@ public class Player extends Sprite {
 
         this.joyStick = joyStick;
 
-        setPosition(Metrics.width / 2, Metrics.height - 200, RADIUS);
+        setPosition(Metrics.width / 2 - 500, Metrics.height - 600, RADIUS);
 
         // 화면 경계값 계산
         minX = RADIUS / 2f;
@@ -52,6 +53,8 @@ public class Player extends Sprite {
         }
 
         if(joyStick.power <= 0 ) {
+            // 중력 적용
+            applyGravity();
             return;
         }
 
@@ -69,6 +72,13 @@ public class Player extends Sprite {
             y = newY;
             setPosition(x, y, RADIUS);
         }
+    }
+
+    private void applyGravity() {
+        float distance_y = GRAVITY * GameView.frameTime;
+        float newY = y + distance_y;
+        y = Math.min(newY, maxY);
+        setPosition(x, y, RADIUS);
     }
 
     private void fireBullet() {
