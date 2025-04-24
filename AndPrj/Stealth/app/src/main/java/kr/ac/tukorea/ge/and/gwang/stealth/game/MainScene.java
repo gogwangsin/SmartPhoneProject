@@ -30,7 +30,7 @@ public class MainScene extends Scene {
         );
 
 
-        this.player = new Player();
+        this.player = new Player(joyStick);
         add(player);
         add(joyStick);
     }
