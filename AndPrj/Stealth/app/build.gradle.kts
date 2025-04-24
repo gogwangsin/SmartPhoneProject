@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    // a2dg 모듈을 app 모듈에서 사용하도록 설정
     implementation(project(":a2dg"))
     implementation(libs.appcompat)
     implementation(libs.material)

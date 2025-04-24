@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    // alias가 동작하게 하는 것보다 이게 간편하다
 }
 
 android {
