@@ -1,6 +1,9 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
+import android.database.MergeCursor;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
@@ -32,18 +35,35 @@ public class Player extends Sprite {
             return;
         }
 
+        angle = (float)Math.toDegrees(joyStick.angle_radian);
+
         float distance_x = SPEED_X * joyStick.power * GameView.frameTime;
         float distance_y = SPEED_Y * joyStick.power * GameView.frameTime;
 
-        x += (float) ( distance_x * Math.cos(joyStick.angle_radian));
-        y += (float) ( distance_y * Math.sin(joyStick.angle_radian));
+        float newX = x + (float)(distance_x * Math.cos(joyStick.angle_radian));
+        float newY = y + (float)(distance_y * Math.sin(joyStick.angle_radian));
 
-        setPosition(x, y, RADIUS);
-
-        angle = (float)Math.toDegrees(joyStick.angle_radian);
+        // 새 위치가 화면 안에 있을 때만 갱신
+        if (newX >= RADIUS && newX <= Metrics.width - RADIUS
+                && newY >= RADIUS && newY <= Metrics.height - RADIUS) {
+            x = newX;
+            y = newY;
+            setPosition(x, y, RADIUS);
+        }
     }
 
+    @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+
+        // 디버깅용 빨간 테두리 네모
+        if (GameView.drawsDebugStuffs) {
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE); // 테두리만
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(4);
+
+            canvas.drawRect(dstRect, paint);
+        }
     }
 }
