@@ -18,6 +18,7 @@ public class Player extends Sprite {
     private static final float SPEED_Y = 500.f;
     private static final float RADIUS = 100f;
     private float minX, maxX, minY, maxY;
+    // 이 경계면을 나가면 안움직인다
 
     private final JoyStick joyStick;
     private float angle;
