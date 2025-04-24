@@ -7,8 +7,8 @@ import android.util.Log;
 
 public class Metrics {
     private static final String TAG = Metrics.class.getSimpleName();
-    public static float width = 900f;
-    public static float height = 1600f;
+    public static float width = 1600;
+    public static float height = 900f;
     public static final float GRID_UNIT = 100f;
     public static final RectF borderRect = new RectF(0, 0, Metrics.width, Metrics.height);
     public static final RectF screenRect = new RectF();

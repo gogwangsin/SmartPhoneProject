@@ -11,7 +11,7 @@ public class StealthActivity extends GameActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        GameView.drawsDebugStuffs = BuildConfig.DEBUG;
+
         super.onCreate(savedInstanceState);
         new MainScene().push();
     }
