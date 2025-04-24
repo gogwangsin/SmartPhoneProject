@@ -26,6 +26,8 @@ public class Player extends Sprite {
 
     private static final float FIRE_INTERVAL = 0.25f;
     private float fireCoolTime = FIRE_INTERVAL;
+    private static final float BULLET_OFFSET_X = 100f;
+    private static final float BULLET_OFFSET_Y = 8f;
 
     public Player (JoyStick joyStick){
         super(R.mipmap.obj_purple_side);
@@ -70,7 +72,7 @@ public class Player extends Sprite {
     }
 
     private void fireBullet() {
-        Scene.top().add(new Bullet(x, y));
+        Scene.top().add(new Bullet(x + BULLET_OFFSET_X, y + BULLET_OFFSET_Y));
     }
 
     @Override
