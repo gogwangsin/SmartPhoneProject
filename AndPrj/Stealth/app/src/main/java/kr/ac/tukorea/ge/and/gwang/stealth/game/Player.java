@@ -16,8 +16,9 @@ public class Player extends Sprite {
 
     private static final float SPEED_X = 700.f;
     private static final float SPEED_Y = 500.f;
-
     private static final float RADIUS = 100f;
+    private float minX, maxX, minY, maxY;
+
     private final JoyStick joyStick;
     private float angle;
 
@@ -27,6 +28,12 @@ public class Player extends Sprite {
         this.joyStick = joyStick;
 
         setPosition(Metrics.width / 2, Metrics.height - 200, RADIUS);
+
+        // 화면 경계값 계산
+        minX = RADIUS / 2f;
+        maxX = Metrics.width - RADIUS / 2f;
+        minY = RADIUS / 1.25f;
+        maxY = Metrics.height - RADIUS / 1.25f;
     }
 
     public void update(){
@@ -44,8 +51,7 @@ public class Player extends Sprite {
         float newY = y + (float)(distance_y * Math.sin(joyStick.angle_radian));
 
         // 새 위치가 화면 안에 있을 때만 갱신
-        if (newX >= RADIUS && newX <= Metrics.width - RADIUS
-                && newY >= RADIUS && newY <= Metrics.height - RADIUS) {
+        if (minX <= newX && newX <= maxX && minY <= newY && newY <= maxY) {
             x = newX;
             y = newY;
             setPosition(x, y, RADIUS);
