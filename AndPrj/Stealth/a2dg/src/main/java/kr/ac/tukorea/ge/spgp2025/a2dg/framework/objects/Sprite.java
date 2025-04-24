@@ -14,6 +14,7 @@ public class Sprite implements IGameObject {
     protected Bitmap bitmap;
     protected Rect srcRect = null;
     protected final RectF dstRect = new RectF();
+    // 비트맵을 실제로 화면에 그릴 위치와 크기 (float로 정밀함)
     protected float x, y, dx, dy;
     protected float width, height, radius;
 
@@ -28,7 +29,7 @@ public class Sprite implements IGameObject {
         this.y = y;
         this.width = this.height = 2 * radius;
         RectUtil.setRect(dstRect, x, y, radius);
-
+        // → 실제 그릴 비트맵의 가로 세로 길이를 반지름 기준으로 정사각형으로 설정.
     }
     public void setPosition(float x, float y, float width, float height) {
         this.x = x;
