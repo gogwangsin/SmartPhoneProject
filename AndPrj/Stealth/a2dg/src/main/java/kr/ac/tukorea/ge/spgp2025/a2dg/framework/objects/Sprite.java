@@ -2,6 +2,8 @@ package kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -51,5 +53,15 @@ public class Sprite implements IGameObject {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+
+        // 디버깅용 빨간 테두리 네모
+        if (GameView.drawsDebugStuffs) {
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE); // 테두리만
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(4);
+
+//            canvas.drawRect(dstRect, paint);
+        }
     }
 }

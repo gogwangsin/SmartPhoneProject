@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
@@ -22,6 +23,9 @@ public class Player extends Sprite {
 
     private final JoyStick joyStick;
     private float angle;
+
+    private static final float FIRE_INTERVAL = 0.25f;
+    private float fireCoolTime = FIRE_INTERVAL;
 
     public Player (JoyStick joyStick){
         super(R.mipmap.obj_purple_side);
@@ -38,6 +42,12 @@ public class Player extends Sprite {
     }
 
     public void update(){
+
+        fireCoolTime -= GameView.frameTime;
+        if( fireCoolTime <= 0 ){
+            fireBullet();
+            fireCoolTime = FIRE_INTERVAL;
+        }
 
         if(joyStick.power <= 0 ) {
             return;
@@ -59,18 +69,14 @@ public class Player extends Sprite {
         }
     }
 
+    private void fireBullet() {
+        Scene.top().add(new Bullet(x, y));
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        // 디버깅용 빨간 테두리 네모
-        if (GameView.drawsDebugStuffs) {
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.STROKE); // 테두리만
-            paint.setColor(Color.RED);
-            paint.setStrokeWidth(4);
 
-            canvas.drawRect(dstRect, paint);
-        }
     }
 }
