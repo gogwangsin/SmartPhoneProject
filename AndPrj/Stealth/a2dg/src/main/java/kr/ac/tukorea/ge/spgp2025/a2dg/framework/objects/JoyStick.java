@@ -24,7 +24,7 @@ public class JoyStick implements IGameObject {
     private final RectF bgRect;
     private final RectF thumbRect;
 
-    private boolean visible;
+    private boolean visible = true;
     private float startX, startY;
     public float power, angle_radian;
     public JoyStick(int bgBmpId, int thumbBmpId, float x, float y, float bg_radius, float thumb_radius, float move_radius) {
@@ -52,14 +52,18 @@ public class JoyStick implements IGameObject {
         float[] pts;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                visible = true;
+
+                // visible = true;
                 pts = Metrics.fromScreen(event.getX(), event.getY());
                 startX = pts[0];
                 startY = pts[1];
                 RectUtil.setRect(thumbRect, x, y, thumb_radius);
                 power = 0;
+
                 return true;
+
             case MotionEvent.ACTION_MOVE:
+
                 pts = Metrics.fromScreen(event.getX(), event.getY());
                 float dx = Math.max(-bg_radius, Math.min(pts[0] - startX, bg_radius));
                 float dy = Math.max(-bg_radius, Math.min(pts[1] - startY, bg_radius));
@@ -70,16 +74,20 @@ public class JoyStick implements IGameObject {
                     dy = (float) (move_radius * Math.sin(angle_radian));
                     radius = move_radius;
                 }
+
                 power = (float) (radius / move_radius);
                 float cx = x + dx, cy = y + dy;
                 //Log.d(TAG, "sx="+startX+" sy="+startY+" dx="+dx + " dy=" + dy + " x=" + x + " y=" + y + " cx=" + cx + " cy=" + cy);
                 Log.d(TAG, "angle=" + (int)Math.toDegrees(angle_radian) + "° power=" + String.format("%.2f", power));
                 RectUtil.setRect(thumbRect, cx, cy, thumb_radius);
+
                 break;
 
             case MotionEvent.ACTION_UP:
-                visible = false;
+
+                // visible = true;
                 power = 0;
+                RectUtil.setRect(thumbRect, x, y, thumb_radius);
                 return true;
         }
         return false;
