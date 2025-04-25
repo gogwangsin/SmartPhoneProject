@@ -95,9 +95,37 @@ public class Player extends Sprite {
         float newX = x + inertiaX * GameView.frameTime;
         float newY = y + velocityY * GameView.frameTime;
 
-        // 경계 조건 체크
-        if ( minX <= newX && newX <= maxX ) x = newX;
-        if ( minY <= newY && newY <= maxY ) y = newY;
+        // x축 경계 조건 체크 -> 캐릭터가 좌우 경계를 벗어나면 위치를 고정하고 x 방향 이동 멈춤 (관성 제거).
+        if (newX < minX) {
+            x = minX;
+            inertiaX = 0;
+            // 왼쪽 벽에 닿았으면 멈춤
+
+        } else if (newX > maxX) {
+            x = maxX;
+            inertiaX = 0;
+            // 오른쪽 벽에 닿았으면 멈춤
+
+        } else {
+            x = newX;
+            // 그 외에는 그대로 이동
+        }
+
+        // y축 경계 조건 체크
+        if (newY < minY) {
+            y = minY;
+            velocityY = 0;
+            // 천장에 닿았으면 위로 가는 힘 제거
+
+        } else if (newY >= maxY) {
+            y = maxY;
+            velocityY = 0; // 땅에 닿았으니까 y속도 제거 -> 땅에 닿았으면 낙하 멈춤
+            inertiaX = 0;  // 땅에 닿았을 때 x축 관성도 제거! -> 추가로 좌우 이동도 멈춤
+
+        } else {
+            y = newY;
+            // 그 외에는 그대로 이동
+        }
 
         setPosition(x, y, RADIUS);
     }
