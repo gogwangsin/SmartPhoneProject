@@ -1,9 +1,12 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
+import android.health.connect.datatypes.Metadata;
+
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
 public class Bullet extends Sprite {
     private static final float BULLET_WIDTH = 100;
@@ -24,6 +27,10 @@ public class Bullet extends Sprite {
     @Override
     public void update() {
         super.update();
+        if (dstRect.left > Metrics.width) {
+            Scene.top().remove(this);
+            return;
+        }
 
         traceTime += GameView.frameTime;
         if(traceTime >= TRACE_INTERVAL) {
