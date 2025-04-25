@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.google.android.material.motion.MaterialBackHandler;
+
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
@@ -19,6 +21,10 @@ public class Player extends Sprite {
     private static final float SPEED_Y = 500.f;
     private static final float RADIUS = 100f;
     private static final float GRAVITY = 300f;
+    private float lastDirX = 0f;
+    private float lastDirY = 1;
+    // 조이스틱 입력이 존재할 때 단위벡터 저장
+
     private float minX, maxX, minY, maxY;
     // 이 경계면을 나가면 안움직인다
 
@@ -63,8 +69,11 @@ public class Player extends Sprite {
         float distance_x = SPEED_X * joyStick.power * GameView.frameTime;
         float distance_y = SPEED_Y * joyStick.power * GameView.frameTime;
 
-        float newX = x + (float)(distance_x * Math.cos(joyStick.angle_radian));
-        float newY = y + (float)(distance_y * Math.sin(joyStick.angle_radian));
+        lastDirX = (float)Math.cos(joyStick.angle_radian);
+        lastDirY = (float)Math.sin(joyStick.angle_radian);
+
+        float newX = x + distance_x * lastDirX;
+        float newY = y + distance_y * lastDirY;
 
         // 새 위치가 화면 안에 있을 때만 갱신
         if (minX <= newX && newX <= maxX && minY <= newY && newY <= maxY) {
@@ -75,9 +84,15 @@ public class Player extends Sprite {
     }
 
     private void applyGravity() {
-        float distance_y = GRAVITY * GameView.frameTime;
-        float newY = y + distance_y;
-        y = Math.min(newY, maxY);
+        float distance = GRAVITY * GameView.frameTime;
+
+        float newX = x + distance * lastDirX;
+        float newY = y + distance * lastDirY;
+
+        // 경계 조건 체크
+        if ( minX <= newX && newX <= maxX ) x = newX;
+        if ( minY <= newY && newY <= maxY ) y = newY;
+
         setPosition(x, y, RADIUS);
     }
 
