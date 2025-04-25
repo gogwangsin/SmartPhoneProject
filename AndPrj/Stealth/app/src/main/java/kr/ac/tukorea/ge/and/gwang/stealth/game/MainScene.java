@@ -27,7 +27,7 @@ public class MainScene extends Scene {
                 1380, 680,  120, 50,
                 100
         );
-        
+
         this.player = new Player(joyStick);
         add(player);
         add(new EnemyGenerator());
