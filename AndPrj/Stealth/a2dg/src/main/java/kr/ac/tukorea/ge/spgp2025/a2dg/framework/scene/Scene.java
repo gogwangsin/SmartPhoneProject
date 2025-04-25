@@ -25,6 +25,10 @@ public class Scene {
 
     }
 
+    public int count() {
+        return gameObjects.size();
+    }
+
     //////////////////////////////////////////////////
     // Game Loop Functions
 
