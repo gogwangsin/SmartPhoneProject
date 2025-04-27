@@ -1,7 +1,11 @@
 package kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 
 public class AnimSprite extends Sprite{
     protected final float fps;
@@ -26,9 +30,9 @@ public class AnimSprite extends Sprite{
         int imageHeight = bitmap.getHeight();
 
         if (frameCount == 0) {
-            this.frameWidth = imageHeight; // 정사각형 크기
-            this.frameHeight = imageHeight;
             this.frameCount = imageWidth / imageHeight;
+            this.frameWidth = imageWidth / this.frameCount;
+            this.frameHeight = imageHeight;
             // => 가로로 몇 칸 잇는지 -> 정사각형 크기로 잘라서 계산
         }
         else {
@@ -59,6 +63,16 @@ public class AnimSprite extends Sprite{
 
         srcRect.set(frameIndex * frameWidth, 0, (frameIndex + 1) * frameWidth, frameHeight);
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+
+        // 디버깅용 빨간 테두리 네모
+        if (GameView.drawsDebugStuffs) {
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE); // 테두리만
+            paint.setColor(Color.RED);
+            paint.setStrokeWidth(4);
+
+            //canvas.drawRect(dstRect, paint);
+        }
     }
 }
 

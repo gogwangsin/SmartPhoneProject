@@ -8,13 +8,15 @@ import android.graphics.Paint;
 import com.google.android.material.motion.MaterialBackHandler;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
-public class Player extends Sprite {
+public class Player extends AnimSprite {
+//public class Player extends Sprite {
     private static final String TAG = Player.class.getSimpleName();
 
     private static final float SPEED_X = 700.f;
@@ -36,17 +38,28 @@ public class Player extends Sprite {
     private static final float BULLET_OFFSET_Y = 8f;
 
     public Player (JoyStick joyStick){
-        super(R.mipmap.obj_purple_side);
+//        super(R.mipmap.obj_purple_side);
+//        super(R.mipmap.sp_shoot_purple, 20, 5);
+        super(R.mipmap.sp_shoot_purple, Math.round(5 / FIRE_INTERVAL), 5);
+        // - 애니메이션 프레임이 5개이고, 0.25초 동안 애니메이션이 끝나는 경우( 발사 간격 )
+        // == 5프레임을 0.25초 안에 보여줘야 한다.
+        // fps = (총 프레임 수)/(애니메이션 시간) = (5)/(0.25) = 20
+        // -> 총알 발사 간격이 0.25초 동안 5프레임 애니메이션 적용하려면 fps는 20
 
         this.joyStick = joyStick;
 
         setPosition(Metrics.width / 2 - 500, Metrics.height - 600, RADIUS);
 
         // 화면 경계값 계산
-        minX = RADIUS / 2f;
+        minX = RADIUS;
         maxX = Metrics.width - RADIUS / 2f;
         minY = RADIUS / 1.25f;
-        maxY = Metrics.height - RADIUS / 1.25f;
+        maxY = Metrics.height - RADIUS;
+//        minX = RADIUS / 2f;
+//        maxY = Metrics.height - RADIUS / 1.25f;
+        // -> 지금은 AnimSprite 기준으로 막는 범위 정한거
+        // -> 총 쏘는 애니메이션 그림이 살짝 왼쪽으로 쏠려있어서 그럼
+        // -> 그냥 Sprite로 그릴 땐 위의 조건 사용
     }
 
     public void update(){
