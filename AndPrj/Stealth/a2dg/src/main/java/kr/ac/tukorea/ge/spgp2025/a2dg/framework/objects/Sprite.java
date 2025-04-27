@@ -14,7 +14,9 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 
 public class Sprite implements IGameObject {
     protected Bitmap bitmap;
+    // 실제로 화면에 그릴 이미지
     protected Rect srcRect = null;
+    // 비트맵의 어느 부분을 그릴지 설정 (null이면 전체 사용)
     protected final RectF dstRect = new RectF();
     // 비트맵을 실제로 화면에 그릴 위치와 크기 (float로 정밀함)
     protected float x, y, dx, dy;
@@ -61,7 +63,7 @@ public class Sprite implements IGameObject {
             paint.setColor(Color.RED);
             paint.setStrokeWidth(4);
 
-            canvas.drawRect(dstRect, paint);
+            // canvas.drawRect(dstRect, paint);
         }
     }
 }
