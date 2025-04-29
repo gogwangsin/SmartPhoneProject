@@ -1,11 +1,15 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.BuildConfig;
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.CollisionHelper;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
@@ -32,6 +36,37 @@ public class MainScene extends Scene {
         add(player);
         add(new EnemyGenerator());
         add(joyStick);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        checkCollision();
+    }
+
+    private void checkCollision() {
+        for (IGameObject o1 : gameObjects) {
+            if (!(o1 instanceof Enemy)) {
+                continue;
+            }
+            Enemy enemy = (Enemy) o1;
+//            boolean removed = false;
+
+            for (IGameObject o2 : gameObjects) {
+                if (!(o2 instanceof Bullet)) {
+                    continue;
+                }
+                Bullet bullet = (Bullet) o2;
+                
+                if (CollisionHelper.collides(enemy, bullet)) {
+                    Log.d(TAG, "Collision !!");
+                    remove(bullet);
+                    remove(enemy);
+//                    removed = true;
+                    break;
+                }
+            }
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
