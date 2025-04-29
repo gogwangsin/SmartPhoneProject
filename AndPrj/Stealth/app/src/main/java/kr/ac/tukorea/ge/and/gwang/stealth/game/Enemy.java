@@ -50,7 +50,7 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
 
     private void updateCollisionRect(){
         collisionRect.set(dstRect);
-        collisionRect.inset(11f, 11f);
+        collisionRect.inset(15f, 15f);
     }
 
     public RectF getCollisionRect() {
