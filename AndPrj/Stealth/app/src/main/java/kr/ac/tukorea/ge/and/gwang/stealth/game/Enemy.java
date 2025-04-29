@@ -1,5 +1,7 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
+import android.graphics.RectF;
+
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
@@ -35,6 +37,9 @@ public class Enemy extends Sprite implements IRecyclable {
         }
     }
 
+    public RectF getCollisionRect() {
+        return dstRect;
+    }
     @Override
     public void onRecycle() {
     }

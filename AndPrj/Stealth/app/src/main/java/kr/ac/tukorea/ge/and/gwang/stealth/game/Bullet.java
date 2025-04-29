@@ -1,5 +1,6 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
+import android.graphics.RectF;
 import android.health.connect.datatypes.Metadata;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
@@ -44,6 +45,9 @@ public class Bullet extends Sprite implements IRecyclable {
         }
     }
 
+    public RectF getCollisionRect() {
+        return dstRect;
+    }
     @Override
     public void onRecycle() {
     }

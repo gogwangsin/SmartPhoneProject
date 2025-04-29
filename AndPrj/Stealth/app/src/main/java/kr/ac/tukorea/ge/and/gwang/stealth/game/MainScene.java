@@ -45,27 +45,36 @@ public class MainScene extends Scene {
     }
 
     private void checkCollision() {
-        for (IGameObject o1 : gameObjects) {
-            if (!(o1 instanceof Enemy)) {
+        int count = gameObjects.size();
+        for (int i1 = count - 1; i1 >= 0; i1--){
+            count = gameObjects.size();
+            if(i1 >= count){
+                i1 = count - 1;
+            }
+
+            IGameObject o1 = gameObjects.get(i1);
+            if(!(o1 instanceof Enemy)){
                 continue;
             }
             Enemy enemy = (Enemy) o1;
-//            boolean removed = false;
 
-            for (IGameObject o2 : gameObjects) {
-                if (!(o2 instanceof Bullet)) {
+            count = gameObjects.size();
+            for(int i2 = count - 1; i2 >= 0; i2--){
+                IGameObject o2 = gameObjects.get(i2);
+                if(!(o2 instanceof Bullet)){
                     continue;
                 }
                 Bullet bullet = (Bullet) o2;
 
                 if (CollisionHelper.collides(enemy, bullet)) {
-                    Log.d(TAG, "Collision !!");
+                    Log.d(TAG, "Collision !! : Bullet@" + System.identityHashCode(bullet) + " vs Enemy@" + System.identityHashCode(enemy));
                     remove(bullet);
                     remove(enemy);
 //                    removed = true;
                     break;
                 }
             }
+
         }
     }
 
