@@ -46,10 +46,18 @@ public class MainScene extends Scene {
 
     private void checkCollision() {
         int count = gameObjects.size();
+
+        // 리스트를 역순으로 순회하는 이유는 remove()로 오브젝트를 삭제할 수 있기 때문
+        //→ 삭제 시 인덱스가 밀리는 걸 방지하려고 뒤에서부터 순회하는 것.
         for (int i1 = count - 1; i1 >= 0; i1--){
             count = gameObjects.size();
             if(i1 >= count){
                 i1 = count - 1;
+                // remove로 크기가 5 -> 4인 경우에
+                // i1이 [4] 인덱스를 가리킨다면 -> 존재하지 않는 인덱스를 건드림
+                //
+                // 대안 -> 현재 리스트 길이 다시 확인하고
+                // 인덱스가 범위를 넘어가면 안전한 최대 인덱스(count - 1)로 보정
             }
 
             IGameObject o1 = gameObjects.get(i1);
@@ -72,6 +80,7 @@ public class MainScene extends Scene {
                     remove(enemy);
 //                    removed = true;
                     break;
+                    // break: 한 번 충돌했으면 더 이상 이 적에 대해 검사하지 않음
                 }
             }
 

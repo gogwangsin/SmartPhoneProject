@@ -29,7 +29,9 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
     }
 
     public static Bullet get(float x, float y) {
+        // 씬에서 관리하는 재활용 객체 리스트의 원소를 얻었을 때 존재하면 초기위치랑 충돌체 영역 설정하고 반환
         Bullet bullet = (Bullet) Scene.top().getRecyclable(Bullet.class);
+
         if(bullet == null){
             bullet = new Bullet(x, y);
         }
@@ -61,6 +63,9 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
     private void updateCollisionRect(){
         collisionRect.set(dstRect);
         collisionRect.inset(15f, 25f);
+        // inset()은 RectF의 사각형 영역을 안쪽으로 줄이는 메서드
+        // 왼쪽과 오른쪽에서 각각 15f만큼 안쪽으로 줄임
+        // 위쪽과 아래쪽에서 각각 25f만큼 안쪽으로 줄임
     }
 
     public RectF getCollisionRect() {
