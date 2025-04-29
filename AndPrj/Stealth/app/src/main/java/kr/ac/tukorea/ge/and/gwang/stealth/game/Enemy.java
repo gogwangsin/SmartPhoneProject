@@ -1,11 +1,12 @@
 package kr.ac.tukorea.ge.and.gwang.stealth.game;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 
-public class Enemy extends Sprite {
+public class Enemy extends Sprite implements IRecyclable {
     private static final float SPEED = 300f;
     private static final float RADIUS = 50f;
 
@@ -32,5 +33,9 @@ public class Enemy extends Sprite {
         if (dstRect.right < 0) {
             Scene.top().remove(this);
         }
+    }
+
+    @Override
+    public void onRecycle() {
     }
 }
