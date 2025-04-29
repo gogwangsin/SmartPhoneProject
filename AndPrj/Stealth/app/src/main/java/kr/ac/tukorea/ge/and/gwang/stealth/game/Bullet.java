@@ -19,16 +19,25 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
     private static final float TRACE_INTERVAL = 0.05f;
     private float traceTime = 0f;
     private static final float TRACE_OFFSET = 80;
+    protected RectF collisionRect = new RectF();
 
     private Bullet(float x, float y) {
         super(R.mipmap.obj_default_bullet);
-
         setPosition(x, y, BULLET_WIDTH, BULLET_HEIGHT);
+        updateCollisionRect();
         dx = SPEED;
     }
 
     public static Bullet get(float x, float y) {
-        return new Bullet(x, y);
+        Bullet bullet = (Bullet) Scene.top().getRecyclable(Bullet.class);
+        if(bullet == null){
+            bullet = new Bullet(x, y);
+        }
+        else {
+            bullet.setPosition(x, y, BULLET_WIDTH, BULLET_HEIGHT);
+            bullet.updateCollisionRect();
+        }
+        return bullet;
     }
 
     @Override
@@ -38,6 +47,9 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
             Scene.top().remove(this);
             return;
         }
+        else {
+            updateCollisionRect();
+        }
 
         traceTime += GameView.frameTime;
         if(traceTime >= TRACE_INTERVAL) {
@@ -46,8 +58,13 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
         }
     }
 
+    private void updateCollisionRect(){
+        collisionRect.set(dstRect);
+        collisionRect.inset(11f, 11f);
+    }
+
     public RectF getCollisionRect() {
-        return dstRect;
+        return collisionRect;
     }
     @Override
     public void onRecycle() {

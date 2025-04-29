@@ -16,20 +16,26 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
 
     private Enemy(int index) {
         super(R.mipmap.obj_blue_monster);
-
         setPosition(Metrics.width + RADIUS, Metrics.height / 20 * (2 * index + 1), RADIUS);
         // index가 0~9일 때 (2 * index + 1)의 결과는 1, 3, 5, ..., 19 → 총 10개
         // 화면을 20등분하고 홀수 칸마다 1개씩 배치하는 구조
         // width / 20 * 0 → 0 (경계선)
         // (width / 20 * 1) → 첫 번째 칸의 가운데
         // => 홀수칸만 사용하면 항상 칸의 중앙에 위치
-
         updateCollisionRect();
         dx = -SPEED;
     }
 
     public static Enemy get(int index) {
-        return new Enemy(index);
+        Enemy enemy = (Enemy) Scene.top().getRecyclable(Enemy.class);
+        if(enemy == null) {
+            enemy = new Enemy(index);
+        }
+        else {
+            enemy.setPosition(Metrics.width + RADIUS, Metrics.height / 20 * (2 * index + 1), RADIUS);
+            enemy.updateCollisionRect();
+        }
+        return enemy;
     }
 
     @Override
