@@ -57,7 +57,7 @@ public class MainScene extends Scene {
                     continue;
                 }
                 Bullet bullet = (Bullet) o2;
-                
+
                 if (CollisionHelper.collides(enemy, bullet)) {
                     Log.d(TAG, "Collision !!");
                     remove(bullet);
