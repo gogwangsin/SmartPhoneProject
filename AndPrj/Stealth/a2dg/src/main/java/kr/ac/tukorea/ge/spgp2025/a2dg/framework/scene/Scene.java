@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
 
@@ -22,6 +23,9 @@ public class Scene {
 
     public void remove(IGameObject gobj) {
         gameObjects.remove(gobj);
+        if( gobj instanceof IRecyclable){
+            ((IRecyclable) gobj).onRecycle();
+        }
 
     }
 

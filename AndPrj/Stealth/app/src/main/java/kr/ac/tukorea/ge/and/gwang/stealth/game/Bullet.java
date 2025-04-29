@@ -4,13 +4,14 @@ import android.graphics.RectF;
 import android.health.connect.datatypes.Metadata;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IBoxCollidable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
-public class Bullet extends Sprite implements IRecyclable {
+public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
     private static final float BULLET_WIDTH = 100;
     private static final float BULLET_HEIGHT = 100;
     private static final float SPEED = 1000f;
