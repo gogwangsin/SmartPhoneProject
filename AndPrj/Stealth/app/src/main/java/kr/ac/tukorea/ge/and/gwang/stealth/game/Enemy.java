@@ -12,6 +12,7 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
     private static final float SPEED = 300f;
     private static final float RADIUS = 50f;
+    protected RectF collisionRect = new RectF();
 
     private Enemy(int index) {
         super(R.mipmap.obj_blue_monster);
@@ -23,6 +24,7 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
         // (width / 20 * 1) → 첫 번째 칸의 가운데
         // => 홀수칸만 사용하면 항상 칸의 중앙에 위치
 
+        updateCollisionRect();
         dx = -SPEED;
     }
 
@@ -35,11 +37,18 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
         super.update();
         if (dstRect.right < 0) {
             Scene.top().remove(this);
+        } else {
+            updateCollisionRect();
         }
     }
 
+    private void updateCollisionRect(){
+        collisionRect.set(dstRect);
+        collisionRect.inset(11f, 11f);
+    }
+
     public RectF getCollisionRect() {
-        return dstRect;
+        return collisionRect;
     }
     @Override
     public void onRecycle() {
