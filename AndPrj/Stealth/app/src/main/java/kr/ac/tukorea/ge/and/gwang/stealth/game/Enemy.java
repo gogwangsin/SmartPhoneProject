@@ -9,7 +9,7 @@ public class Enemy extends Sprite {
     private static final float SPEED = 300f;
     private static final float RADIUS = 50f;
 
-    public Enemy(int index) {
+    private Enemy(int index) {
         super(R.mipmap.obj_blue_monster);
 
         setPosition(Metrics.width + RADIUS, Metrics.height / 20 * (2 * index + 1), RADIUS);

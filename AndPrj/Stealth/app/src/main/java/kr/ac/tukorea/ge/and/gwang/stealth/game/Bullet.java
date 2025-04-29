@@ -17,11 +17,15 @@ public class Bullet extends Sprite {
     private float traceTime = 0f;
     private static final float TRACE_OFFSET = 80;
 
-    public Bullet(float x, float y) {
+    private Bullet(float x, float y) {
         super(R.mipmap.obj_default_bullet);
 
         setPosition(x, y, BULLET_WIDTH, BULLET_HEIGHT);
         dx = SPEED;
+    }
+
+    public static Bullet get(float x, float y) {
+        return new Bullet(x, y);
     }
 
     @Override
