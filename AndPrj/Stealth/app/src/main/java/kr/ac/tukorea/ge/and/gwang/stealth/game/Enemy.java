@@ -22,6 +22,10 @@ public class Enemy extends Sprite {
         dx = -SPEED;
     }
 
+    public static Enemy get(int index) {
+        return new Enemy(index);
+    }
+
     @Override
     public void update() {
         super.update();

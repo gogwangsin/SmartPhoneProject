@@ -144,7 +144,7 @@ public class Player extends AnimSprite {
     }
 
     private void fireBullet() {
-        Scene.top().add(new Bullet(x + BULLET_OFFSET_X, y + BULLET_OFFSET_Y));
+        Scene.top().add(Bullet.get(x + BULLET_OFFSET_X, y + BULLET_OFFSET_Y));
     }
 
     @Override

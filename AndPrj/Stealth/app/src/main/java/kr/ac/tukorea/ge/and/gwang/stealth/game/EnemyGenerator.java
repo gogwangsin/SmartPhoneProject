@@ -17,7 +17,7 @@ public class EnemyGenerator implements IGameObject {
         enemyTime -= GameView.frameTime;
         if ( enemyTime < 0 ){
             int index = random.nextInt(10);
-            Scene.top().add(new Enemy(index));
+            Scene.top().add(Enemy.get(index));
             enemyTime = random.nextFloat() + 0.5f;
         }
     }
