@@ -27,7 +27,7 @@ public class MainScene extends Scene {
         GameView.drawsDebugStuffs = BuildConfig.DEBUG;
         // 디버그 빌드일 때만 나오게 한다
 
-        add(new HorzScrollBackground(R.mipmap.bg_digital, 200));
+        // add(new HorzScrollBackground(R.mipmap.bg_digital, 200));
 
         joyStick = new JoyStick(
                 R.mipmap.bg_joystick, R.mipmap.thumb_joystick,

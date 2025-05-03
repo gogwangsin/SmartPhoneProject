@@ -14,6 +14,7 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IBoxCollidable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
 public class Scene {
     private static final String TAG = Scene.class.getSimpleName();
@@ -84,6 +85,10 @@ public class Scene {
         }
     }
     public void draw(Canvas canvas) {
+        if (this.clipRect()){
+            canvas.clipRect(0,0, Metrics.width, Metrics.height);
+        }
+
         for (IGameObject gobj : gameObjects) {
             gobj.draw(canvas);
         }
@@ -144,6 +149,8 @@ public class Scene {
     public boolean onBackPressed() {
         return false;
     }
+
+    public boolean clipRect() { return true; }
 }
 
 /*
