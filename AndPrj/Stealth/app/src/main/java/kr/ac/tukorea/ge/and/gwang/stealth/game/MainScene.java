@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import kr.ac.tukorea.ge.and.gwang.stealth.BuildConfig;
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.HorzScrollBackground;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.CollisionHelper;
@@ -25,6 +26,8 @@ public class MainScene extends Scene {
 
         GameView.drawsDebugStuffs = BuildConfig.DEBUG;
         // 디버그 빌드일 때만 나오게 한다
+
+        add(new HorzScrollBackground(R.mipmap.bg_digital, 200));
 
         joyStick = new JoyStick(
                 R.mipmap.bg_joystick, R.mipmap.thumb_joystick,

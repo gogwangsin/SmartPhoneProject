@@ -215,7 +215,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
             borderPaint = new Paint();
             borderPaint.setStyle(Paint.Style.STROKE);
             borderPaint.setStrokeWidth(10f);
-            borderPaint.setColor(Color.RED);
+            borderPaint.setColor(Color.BLACK);
 
             gridPaint = new Paint();
             gridPaint.setStyle(Paint.Style.STROKE);
@@ -234,7 +234,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void drawDebugInfo(Canvas canvas, Scene scene) {
         if (fpsPaint == null) {
             fpsPaint = new Paint();
-            fpsPaint.setColor(Color.BLUE);
+            fpsPaint.setColor(Color.GREEN);
             fpsPaint.setTextSize(50f);
         }
 
