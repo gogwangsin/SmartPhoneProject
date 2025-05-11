@@ -57,13 +57,13 @@ public class Sprite implements IGameObject {
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
 
         // 디버깅용 빨간 테두리 네모
-        if (GameView.drawsDebugStuffs) {
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.STROKE); // 테두리만
-            paint.setColor(Color.RED);
-            paint.setStrokeWidth(4);
-
-            //canvas.drawRect(dstRect, paint);
-        }
+//        if (GameView.drawsDebugStuffs) {
+//            Paint paint = new Paint();
+//            paint.setStyle(Paint.Style.STROKE); // 테두리만
+//            paint.setColor(Color.RED);
+//            paint.setStrokeWidth(4);
+//
+//            canvas.drawRect(dstRect, paint);
+//        }
     }
 }

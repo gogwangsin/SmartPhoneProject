@@ -99,6 +99,7 @@ public class Scene {
                 bboxPaint = new Paint();
                 bboxPaint.setStyle(Paint.Style.STROKE); // 테두리만 그리도록 설정
                 bboxPaint.setColor(Color.RED);
+                bboxPaint.setStrokeWidth(4);
             }
 
             // 모든 게임 오브젝트 순회

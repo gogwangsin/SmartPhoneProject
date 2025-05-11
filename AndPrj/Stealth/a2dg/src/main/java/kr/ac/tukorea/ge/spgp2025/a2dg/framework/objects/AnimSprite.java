@@ -71,7 +71,7 @@ public class AnimSprite extends Sprite{
             paint.setColor(Color.RED);
             paint.setStrokeWidth(4);
 
-            //canvas.drawRect(dstRect, paint);
+            canvas.drawRect(dstRect, paint);
         }
     }
 }

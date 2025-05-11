@@ -21,7 +21,7 @@ public class Player extends AnimSprite {
 
     private static final float SPEED_X = 700.f;
     private static final float SPEED_Y = 500.f;
-    private static final float RADIUS = 100f;
+    private static final float RADIUS = 80f;
     private static final float GRAVITY = 500f;
     private float inertiaX = 0f; // x 방향 관성
     private float velocityY = 0f; // y방향 중력 가속도
