@@ -50,6 +50,44 @@
 
 ---
 
+## 🎮 4. MainScene에 등장하는 Game Object들
+<br>
+
+**1. Scene을 상속받은 MainScene -> Object Recycling**
+
+![화면 캡처 2025-05-11 134421](https://github.com/user-attachments/assets/7d05f3a7-3148-4f36-8ff3-3a5fc0fb64d4)
+<br>
+
+**2. HorzScrollBackground : 수평 스크롤링 배경**
+
+![화면 캡처 2025-05-11 135215](https://github.com/user-attachments/assets/706c9572-2db8-4b5a-908e-5a6cf93c58fd)
+<br> 
+
+**3. joyStick**
+**4. Player**
+
+![화면 캡처 2025-05-11 134041](https://github.com/user-attachments/assets/6fe7793a-8a81-49a7-8307-03c5f9e41533)
+![화면 캡처 2025-05-11 134056](https://github.com/user-attachments/assets/642eb4f7-8713-4c94-af3e-e2c6ea788b4e)
+<br>
+
+**5. EnemyGenerator**
+**6. Enemy**
+
+![화면 캡처 2025-05-11 135754](https://github.com/user-attachments/assets/3d47c2a9-b6ad-4a6d-b448-34119f115a3c)
+![화면 캡처 2025-05-11 135925](https://github.com/user-attachments/assets/cd0606d7-eecf-429b-8c98-55f9d66f51be)
+<br>
+
+**7. Bullet**
+**8. TraceDot**
+
+![화면 캡처 2025-05-11 140238](https://github.com/user-attachments/assets/9bf349b9-0e6e-4709-9d30-12c3b77085bd)
+![화면 캡처 2025-05-11 140328](https://github.com/user-attachments/assets/f0d0b408-f5df-4e77-b9e4-b647f6c3dc1f)
+
+
+## 🎮 5. 인게임 화면
+
+![화면 캡처 2025-05-11 113232532](https://github.com/user-attachments/assets/83ad1f77-e57b-4e76-832c-1be48b6b150e)
+
 
 
 
