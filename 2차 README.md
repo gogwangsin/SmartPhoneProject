@@ -55,6 +55,7 @@
 
 **1. Scene을 상속받은 MainScene -> Object Recycling**
 
+![화면 캡처 2025-05-11 141912](https://github.com/user-attachments/assets/76ff7bf0-9c2b-42c5-aaa2-72a5869e89da)
 ![화면 캡처 2025-05-11 134421](https://github.com/user-attachments/assets/7d05f3a7-3148-4f36-8ff3-3a5fc0fb64d4)
 <br>
 
