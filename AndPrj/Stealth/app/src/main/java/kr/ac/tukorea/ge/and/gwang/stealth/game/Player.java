@@ -12,6 +12,7 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.Gauge;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
@@ -36,7 +37,7 @@ public class Player extends AnimSprite {
     private float fireCoolTime = FIRE_INTERVAL;
     private static final float BULLET_OFFSET_X = 100f;
     private static final float BULLET_OFFSET_Y = 8f;
-
+    private Gauge gauge = new Gauge(0.1f, R.color.enemy_gauge_bg, R.color.enemy_gauge_fg);
     public Player (JoyStick joyStick){
 //        super(R.mipmap.obj_purple_side);
 //        super(R.mipmap.sp_shoot_purple, 20, 5);
@@ -60,6 +61,7 @@ public class Player extends AnimSprite {
         // -> 지금은 AnimSprite 기준으로 막는 범위 정한거
         // -> 총 쏘는 애니메이션 그림이 살짝 왼쪽으로 쏠려있어서 그럼
         // -> 그냥 Sprite로 그릴 땐 위의 조건 사용
+
     }
 
     public void update(){
@@ -144,13 +146,22 @@ public class Player extends AnimSprite {
     }
 
     private void fireBullet() {
-        Scene.top().add(Bullet.get(x + BULLET_OFFSET_X, y + BULLET_OFFSET_Y));
+        MainScene scene = (MainScene) Scene.top();
+        if (scene == null) return;
+
+        int score = scene.getScore();
+        int power = 10 + score / 1000;
+
+        Bullet bullet = Bullet.get(x + BULLET_OFFSET_X, y + BULLET_OFFSET_Y, power);
+//        scene.add(bullet);
+
+        Scene.top().add(bullet);
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-
+        gauge.draw(canvas, x - RADIUS, y - RADIUS - 20.f, width, fireCoolTime / FIRE_INTERVAL);
     }
 }

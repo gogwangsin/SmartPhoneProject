@@ -20,22 +20,25 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
     private float traceTime = 0f;
     private static final float TRACE_OFFSET = 80;
     protected RectF collisionRect = new RectF();
+    private int power;
 
-    private Bullet(float x, float y) {
+    private Bullet(float x, float y, int power) {
         super(R.mipmap.obj_default_bullet);
         setPosition(x, y, BULLET_WIDTH, BULLET_HEIGHT);
         updateCollisionRect();
         dx = SPEED;
+        this.power = power;
     }
 
-    public static Bullet get(float x, float y) {
+    public static Bullet get(float x, float y, int power) {
         // 씬에서 관리하는 재활용 객체 리스트의 원소를 얻었을 때 존재하면 초기위치랑 충돌체 영역 설정하고 반환
         Bullet bullet = (Bullet) Scene.top().getRecyclable(Bullet.class);
 
         if(bullet == null){
-            bullet = new Bullet(x, y);
+            bullet = new Bullet(x, y, power);
         }
         else {
+            bullet.power = power;
             bullet.setPosition(x, y, BULLET_WIDTH, BULLET_HEIGHT);
             bullet.updateCollisionRect();
         }
@@ -66,6 +69,10 @@ public class Bullet extends Sprite implements IRecyclable, IBoxCollidable {
         // inset()은 RectF의 사각형 영역을 안쪽으로 줄이는 메서드
         // 왼쪽과 오른쪽에서 각각 15f만큼 안쪽으로 줄임
         // 위쪽과 아래쪽에서 각각 25f만큼 안쪽으로 줄임
+    }
+
+    public int getPower() {
+        return power;
     }
 
     public RectF getCollisionRect() {

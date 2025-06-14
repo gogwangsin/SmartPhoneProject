@@ -91,10 +91,13 @@ public class MainScene extends Scene {
                 Bullet bullet = (Bullet) o2;
 
                 if (CollisionHelper.collides(enemy, bullet)) {
-                    Log.d(TAG, "Collision !! : Bullet@" + System.identityHashCode(bullet) + " vs Enemy@" + System.identityHashCode(enemy));
+//                    Log.d(TAG, "Collision !! : Bullet@" + System.identityHashCode(bullet) + " vs Enemy@" + System.identityHashCode(enemy));
                     remove(bullet);
-                    remove(enemy);
-                    addScore(10);
+                    boolean dead = enemy.decreaseLife(bullet.getPower());
+                    if (dead){
+                        remove(enemy);
+                        addScore(enemy.getScore());
+                    }
 //                    removed = true;
                     break;
                     // break: 한 번 충돌했으면 더 이상 이 적에 대해 검사하지 않음
