@@ -71,4 +71,7 @@ public class Sprite implements IGameObject {
 //            canvas.drawRect(dstRect, paint);
 //        }
     }
+
+    public float GetX() { return x;}
+    public float GetY() { return y;}
 }

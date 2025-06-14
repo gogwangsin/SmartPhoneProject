@@ -15,6 +15,7 @@ public class AnimSprite extends Sprite{
     protected final int frameWidth, frameHeight;
     // 한 프레임의 가로/세로 크기
     protected final long createOn;
+    private int frameIndex;
     // 생성된 시간 (애니메이션이 언제 시작했는지)
 
     public AnimSprite(int mipmapId, float fps) {
@@ -54,7 +55,7 @@ public class AnimSprite extends Sprite{
         // (now - createOn)는 millsec(밀리초) 단위 -> 1초 = 1000밀리초이니 -> time을 초 단위로 수정
         // ex) 1초에 10프레임 같이 표현하기 위함
 
-        int frameIndex = Math.round(time * fps) % frameCount;
+        frameIndex = Math.round(time * fps) % frameCount;
         // time: 지금까지 흐른 초
         // fps: 1초에 몇 프레임 보여줄지
         // time * fps: 지금까지 몇 프레임만큼 시간이 흘렀는지
@@ -74,6 +75,8 @@ public class AnimSprite extends Sprite{
 //            canvas.drawRect(dstRect, paint);
 //        }
     }
+
+    public int GetFrameIndex() { return frameIndex; }
 }
 
 

@@ -120,10 +120,19 @@ public class MainScene extends Scene {
                 if (CollisionHelper.collides(enemy, bullet)) {
 //                    Log.d(TAG, "Collision !! : Bullet@" + System.identityHashCode(bullet) + " vs Enemy@" + System.identityHashCode(enemy));
                     remove(bullet);
+
+
                     boolean dead = enemy.decreaseLife(bullet.getPower());
                     if (dead){
                         remove(enemy);
                         addScore(enemy.getScore());
+                        EffectVFX effect = new EffectVFX(R.mipmap.vfx_7, 5,6);
+                        effect.setPosition(enemy.GetX(), enemy.GetY(), 100);
+                        Scene.top().add(effect);
+                    }else {
+                        EffectVFX effect = new EffectVFX(R.mipmap.vfx_10, 5,5);
+                        effect.setPosition(enemy.GetX(), enemy.GetY(), 100);
+                        Scene.top().add(effect);
                     }
 //                    removed = true;
                     break;
