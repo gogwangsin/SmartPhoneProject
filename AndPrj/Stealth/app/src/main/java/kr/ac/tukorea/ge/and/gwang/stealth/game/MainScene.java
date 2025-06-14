@@ -9,6 +9,7 @@ import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.HorzScrollBackground;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Score;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.CollisionHelper;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
@@ -18,7 +19,7 @@ public class MainScene extends Scene {
     private static final String TAG = MainScene.class.getSimpleName();
 
     private final Player player;
-
+    private final Score score;
     private JoyStick joyStick;
 
     public MainScene() {
@@ -38,6 +39,11 @@ public class MainScene extends Scene {
         this.player = new Player(joyStick);
         add(player);
         add(new EnemyGenerator());
+
+        this.score = new Score(R.mipmap.number_24x32, 1450f, 50f, 60f);
+        score.setScore(0);
+        add(score);
+
         add(joyStick);
     }
 
@@ -45,6 +51,13 @@ public class MainScene extends Scene {
     public void update() {
         super.update();
         checkCollision();
+    }
+
+    public void addScore(int amount) {
+        score.add(amount);
+    }
+    public int getScore() {
+        return score.getScore();
     }
 
     private void checkCollision() {
@@ -81,6 +94,7 @@ public class MainScene extends Scene {
                     Log.d(TAG, "Collision !! : Bullet@" + System.identityHashCode(bullet) + " vs Enemy@" + System.identityHashCode(enemy));
                     remove(bullet);
                     remove(enemy);
+                    addScore(10);
 //                    removed = true;
                     break;
                     // break: 한 번 충돌했으면 더 이상 이 적에 대해 검사하지 않음
