@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IBoxCollidable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.ITouchable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
@@ -130,7 +131,20 @@ public class Scene {
 
     //////////////////////////////////////////////////
     // Overridables
+
+    protected int getTouchLayerIndex() {
+        return -1;
+    }
+
     public boolean onTouchEvent(MotionEvent event) {
+//        ArrayList<IGameObject> gameObjects = layers.get(touchLayer);
+        for (IGameObject gobj : gameObjects) {
+            if (!(gobj instanceof ITouchable)) {
+                continue;
+            }
+            boolean processed = ((ITouchable) gobj).onTouchEvent(event);
+            if (processed) return true;
+        }
         return false;
     }
 

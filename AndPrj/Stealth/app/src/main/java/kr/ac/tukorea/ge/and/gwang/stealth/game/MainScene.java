@@ -7,9 +7,11 @@ import android.view.MotionEvent;
 import kr.ac.tukorea.ge.and.gwang.stealth.BuildConfig;
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Button;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.HorzScrollBackground;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Score;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.CollisionHelper;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
@@ -21,6 +23,11 @@ public class MainScene extends Scene {
     private final Player player;
     private final Score score;
     private JoyStick joyStick;
+
+    private Button button1;
+    private Button button2;
+
+//    private static final String TAG = MainScene.class.getSimpleName();
 
     public MainScene() {
         Metrics.setGameSize(1600, 900);
@@ -36,13 +43,33 @@ public class MainScene extends Scene {
                 100
         );
 
-        this.player = new Player(joyStick);
+        this.player = new Player(joyStick, R.mipmap.sp_shoot_purple);
         add(player);
         add(new EnemyGenerator());
 
         this.score = new Score(R.mipmap.number_24x32, 1450f, 50f, 60f);
         score.setScore(0);
         add(score);
+
+        button1 = new Button(R.mipmap.obj_missile_bullet,
+                150f, 800f, 150f, 150f, new Button.OnTouchListener() {
+            @Override
+            public boolean onTouch(boolean pressed) {
+                Log.d("BUTTON", "Missile button pressed: " + pressed);
+                player.fireBullet();
+                return true;
+            }
+        });
+        add(button1);
+
+        button2 = new Button(R.mipmap.obj_red_bullet,
+                400f, 800f, 150f, 150f, new Button.OnTouchListener() {
+            @Override
+            public boolean onTouch(boolean pressed) {
+                return false;
+            }
+        });
+        add(button2);
 
         add(joyStick);
     }
@@ -103,7 +130,6 @@ public class MainScene extends Scene {
                     // break: 한 번 충돌했으면 더 이상 이 적에 대해 검사하지 않음
                 }
             }
-
         }
     }
 

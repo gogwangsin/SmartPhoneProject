@@ -32,20 +32,24 @@ public class Player extends AnimSprite {
 
     private final JoyStick joyStick;
     private float angle;
+    private Sprite AirPlane;
+    private AnimSprite PlaneEffect;
 
     private static final float FIRE_INTERVAL = 0.25f;
     private float fireCoolTime = FIRE_INTERVAL;
     private static final float BULLET_OFFSET_X = 100f;
     private static final float BULLET_OFFSET_Y = 8f;
     private Gauge gauge = new Gauge(0.1f, R.color.enemy_gauge_bg, R.color.enemy_gauge_fg);
-    public Player (JoyStick joyStick){
+    public Player (JoyStick joyStick, int mipmapID){
 //        super(R.mipmap.obj_purple_side);
 //        super(R.mipmap.sp_shoot_purple, 20, 5);
-        super(R.mipmap.sp_shoot_purple, Math.round(5 / FIRE_INTERVAL), 5);
+        super(mipmapID, Math.round(5 / FIRE_INTERVAL), 5);
         // - 애니메이션 프레임이 5개이고, 0.25초 동안 애니메이션이 끝나는 경우( 발사 간격 )
         // == 5프레임을 0.25초 안에 보여줘야 한다.
         // fps = (총 프레임 수)/(애니메이션 시간) = (5)/(0.25) = 20
         // -> 총알 발사 간격이 0.25초 동안 5프레임 애니메이션 적용하려면 fps는 20
+
+        createAirplane(mipmapID);
 
         this.joyStick = joyStick;
 
@@ -64,6 +68,15 @@ public class Player extends AnimSprite {
 
     }
 
+    private void createAirplane(int mipmapID) {
+        if (mipmapID == R.mipmap.sp_shoot_purple) {
+            AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
+            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
+            Effect.setPosition(x, y, 100);
+            PlaneEffect = Effect;
+        }
+    }
+
     public void update(){
 
         fireCoolTime -= GameView.frameTime;
@@ -75,6 +88,9 @@ public class Player extends AnimSprite {
         if(joyStick.power <= 0 ) {
             // 중력 적용
             applyGravity();
+            AirPlane.setPosition(x- 30, y + 70, 100);
+            PlaneEffect.setPosition(x - 200, y + 80, 100);
+
             return;
         }
 
@@ -100,6 +116,9 @@ public class Player extends AnimSprite {
             x = newX;
             y = newY;
             setPosition(x, y, RADIUS);
+            AirPlane.setPosition(x - 30, y + 70, 100);
+            PlaneEffect.setPosition(x - 200, y + 80, 100);
+
         }
     }
 
@@ -145,7 +164,7 @@ public class Player extends AnimSprite {
         setPosition(x, y, RADIUS);
     }
 
-    private void fireBullet() {
+    public void fireBullet() {
         MainScene scene = (MainScene) Scene.top();
         if (scene == null) return;
 
@@ -162,6 +181,8 @@ public class Player extends AnimSprite {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
+        AirPlane.draw(canvas);
+        PlaneEffect.draw(canvas);
         gauge.draw(canvas, x - RADIUS, y - RADIUS - 20.f, width, fireCoolTime / FIRE_INTERVAL);
     }
 }

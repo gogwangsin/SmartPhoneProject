@@ -28,6 +28,11 @@ public class Sprite implements IGameObject {
         }
     }
 
+    public Sprite(int mipmapId, float x, float y, float width, float height) {
+        this(mipmapId);
+        setPosition(x, y, width, height);
+    }
+
     public void setPosition(float x, float y, float radius) {
         this.x = x;
         this.y = y;

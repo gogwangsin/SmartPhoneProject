@@ -55,6 +55,9 @@ public class JoyStick implements IGameObject {
 
                 // visible = true;
                 pts = Metrics.fromScreen(event.getX(), event.getY());
+                // ✅ 조이스틱 배경 영역 안일 때만 동작
+                if (!bgRect.contains(pts[0], pts[1])) return false;
+
                 startX = pts[0];
                 startY = pts[1];
                 RectUtil.setRect(thumbRect, x, y, thumb_radius);
