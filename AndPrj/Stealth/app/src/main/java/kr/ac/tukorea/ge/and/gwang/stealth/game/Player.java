@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.android.material.motion.MaterialBackHandler;
 
+import java.util.Currency;
 import java.util.HashMap;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
@@ -57,6 +58,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final float SPEED_Y = 500.f;
     private static final float RADIUS = 80f;
     private static final float GRAVITY = 500f;
+    private static int MAX_LIFE = 5;
+    private static int CURRENT_LIFE = 5;
     private float inertiaX = 0f; // x 방향 관성
     private float velocityY = 0f; // y방향 중력 가속도
 
@@ -75,7 +78,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private Gauge gauge = new Gauge(0.1f, R.color.enemy_gauge_bg, R.color.enemy_gauge_fg);
     private Player player;
     protected RectF collisionRect = new RectF();
-
+    private long lastHitTime = 0;
+    private static final long INVINCIBILITY_DURATION = 1000; // 무적 시간 1초
 
     public Player (JoyStick joyStick, int mipmapID){
 //        super(R.mipmap.obj_purple_side);
@@ -142,16 +146,26 @@ public class Player extends AnimSprite implements IBoxCollidable {
         else {
             AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
         }
+        CURRENT_LIFE = MAX_LIFE;
         AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
         Effect.setPosition(x, y, 100);
         PlaneEffect = Effect;
     }
 
+    public void SetCurrentLIFE(int damage) {
+        CURRENT_LIFE -= damage;
+        if ( CURRENT_LIFE < 0) {
+            CURRENT_LIFE = 0;
+        }
+    }
+
+    int GetCurrentLIFE() { return CURRENT_LIFE; }
+
     public void update(){
 
         fireCoolTime -= GameView.frameTime;
         if( fireCoolTime <= 0 ){
-//            fireBullet();
+            fireBullet();
             fireCoolTime = FIRE_INTERVAL;
         }
 
@@ -194,6 +208,10 @@ public class Player extends AnimSprite implements IBoxCollidable {
         }
     }
 
+    public boolean canBeHit() {
+        long now = System.currentTimeMillis();
+        return now - lastHitTime > INVINCIBILITY_DURATION;
+    }
     private void applyGravity() {
         // 중력 가속도 더하기
         velocityY += GRAVITY * GameView.frameTime;
@@ -266,5 +284,12 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     public RectF getCollisionRect() {
         return collisionRect;
+    }
+
+    public void onHit() {
+        if (canBeHit()) {
+            CURRENT_LIFE--;
+            lastHitTime = System.currentTimeMillis();
+        }
     }
 }

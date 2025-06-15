@@ -31,6 +31,7 @@ public class MainScene extends Scene {
     private Button button1;
     private Button button2;
 
+    private int CharacterIndex = 0;
     private static MainScene instance;
 
 //    private static final String TAG = MainScene.class.getSimpleName();
@@ -57,7 +58,7 @@ public class MainScene extends Scene {
                 R.mipmap.yellow_shoot,
                 R.mipmap.brown_shoot,
         };
-
+        CharacterIndex = characterIndex;
         this.player = new Player(joyStick, playerResIds[characterIndex]);
         add(player);
         add(new EnemyGenerator());
@@ -87,14 +88,16 @@ public class MainScene extends Scene {
         add(button2);
 
         add(joyStick);
+//
+//        add(new Button(R.mipmap.btn_pause, 1500f, 100f, 100f, 100f, new Button.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(boolean pressed) {
+//                new PauseScene(characterIndex).push();
+//                return false;
+//            }
+//        }));
 
-        add(new Button(R.mipmap.btn_pause, 1500f, 100f, 100f, 100f, new Button.OnTouchListener() {
-            @Override
-            public boolean onTouch(boolean pressed) {
-                new PauseScene(characterIndex).push();
-                return false;
-            }
-        }));
+        add(new HeartUI(player));
     }
 
     @Override
@@ -188,8 +191,13 @@ public class MainScene extends Scene {
                     effect.setPosition(player.GetX(), player.GetY(), 300);
                     Scene.top().add(effect);
 
-//                    // 게임 오버 처리 - 필요 시 Scene 전환 또는 상태 변경
-//                    MainScene.getInstance().onGameOver();  // 따로 정의한 메서드가 필요
+                    // 생명 감소는 무적 여부 확인 후 실행
+                    Sound.playEffect(R.raw.hurt);
+                    player.onHit();
+                    if ( player.GetCurrentLIFE() <= 0 ) {
+                        new PauseScene(CharacterIndex).push();
+                    }
+
                     break;
                 }
             }
