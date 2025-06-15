@@ -71,9 +71,7 @@ public class MainScene extends Scene {
                 150f, 800f, 150f, 150f, new Button.OnTouchListener() {
             @Override
             public boolean onTouch(boolean pressed) {
-                Log.d("BUTTON", "Missile button pressed: " + pressed);
-                if (pressed) player.fireBullet(); // 눌릴 때만 발사
-                return true; // 이벤트 처리 완료됨을 알림
+                return false;
             }
         });
         add(button1);
@@ -82,7 +80,9 @@ public class MainScene extends Scene {
                 400f, 800f, 150f, 150f, new Button.OnTouchListener() {
             @Override
             public boolean onTouch(boolean pressed) {
-                return false;
+                Log.d("BUTTON", "Missile button pressed: " + pressed);
+                if (pressed) player.FireREDBullet(); // 눌릴 때만 발사
+                return true; // 이벤트 처리 완료됨을 알림
             }
         });
         add(button2);

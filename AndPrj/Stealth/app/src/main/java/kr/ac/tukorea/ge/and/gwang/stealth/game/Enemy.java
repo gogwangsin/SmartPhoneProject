@@ -14,6 +14,12 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
     private static final float SPEED = 300f;
     private static final float RADIUS = 50f;
+    private static int[] enemyImageIds = {
+            R.mipmap.obj_blue_monster,
+            R.mipmap.obj_pink_monster,
+            R.mipmap.obj_purple_monster,
+            R.mipmap.obj_green_monster
+    };
     protected RectF collisionRect = new RectF();
 //    public static final int MAX_LEVEL = resIds.length - 1;
     public static final int MAX_LEVEL = 20;
@@ -22,7 +28,7 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
     protected Gauge gauge = new Gauge(0.1f, R.color.enemy_gauge_bg, R.color.enemy_gauge_fg);
 
     private Enemy(int level, int index) {
-        super(R.mipmap.obj_blue_monster);
+        super(randomEnemyImageId());
         setPosition(Metrics.width + RADIUS, Metrics.height / 20 * (2 * index + 1), RADIUS);
         // index가 0~9일 때 (2 * index + 1)의 결과는 1, 3, 5, ..., 19 → 총 10개
         // 화면을 20등분하고 홀수 칸마다 1개씩 배치하는 구조
@@ -35,6 +41,11 @@ public class Enemy extends Sprite implements IRecyclable, IBoxCollidable {
         this.life = this.maxLife = (level + 1) * 10;
     }
 
+    private static int randomEnemyImageId() {
+        int idx = (int)(Math.random() * enemyImageIds.length);
+        return enemyImageIds[idx];
+    }
+    
     public static Enemy get(int level, int index) {
         Enemy enemy = (Enemy) Scene.top().getRecyclable(Enemy.class);
         if(enemy == null) {

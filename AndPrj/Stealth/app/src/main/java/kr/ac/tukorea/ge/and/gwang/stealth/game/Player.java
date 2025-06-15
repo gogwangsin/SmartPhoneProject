@@ -276,6 +276,14 @@ public class Player extends AnimSprite implements IBoxCollidable {
         Sound.playEffect(R.raw.jelly);
     }
 
+    public void FireREDBullet(){
+        MainScene scene = (MainScene) Scene.top();
+        if (scene == null) return;
+
+        RedBullet bullet = new RedBullet(y);
+        Scene.top().add(bullet);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
