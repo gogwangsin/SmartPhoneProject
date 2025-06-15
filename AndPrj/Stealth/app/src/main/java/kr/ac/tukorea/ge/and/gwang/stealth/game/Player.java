@@ -81,7 +81,7 @@ public class Player extends AnimSprite {
 
         fireCoolTime -= GameView.frameTime;
         if( fireCoolTime <= 0 ){
-            fireBullet();
+//            fireBullet();
             fireCoolTime = FIRE_INTERVAL;
         }
 

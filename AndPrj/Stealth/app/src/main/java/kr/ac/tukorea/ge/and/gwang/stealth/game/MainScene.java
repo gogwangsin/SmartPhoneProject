@@ -4,6 +4,9 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import kr.ac.tukorea.ge.and.gwang.stealth.BuildConfig;
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IGameObject;
@@ -12,6 +15,7 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.HorzScrollBackground;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Score;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.res.Sound;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.CollisionHelper;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
@@ -56,8 +60,8 @@ public class MainScene extends Scene {
             @Override
             public boolean onTouch(boolean pressed) {
                 Log.d("BUTTON", "Missile button pressed: " + pressed);
-                player.fireBullet();
-                return true;
+                if (pressed) player.fireBullet(); // 눌릴 때만 발사
+                return true; // 이벤트 처리 완료됨을 알림
             }
         });
         add(button1);
@@ -143,7 +147,45 @@ public class MainScene extends Scene {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
-        return joyStick.onTouch(event);
+//        return joyStick.onTouch(event);
+
+        boolean handled = false;
+
+        List<Button> buttons = new ArrayList<>();
+        for (IGameObject obj : gameObjects) {
+            if (obj instanceof Button) {
+                buttons.add((Button) obj);
+            }
+        }
+        for (Button button : buttons) {
+            handled |= button.onTouchEvent(event);
+        }
+
+        // 조이스틱에도 이벤트 전달
+        handled |= joyStick.onTouch(event);
+
+        return handled;
+
+    }
+
+    @Override
+    public void onEnter() {
+        Sound.playMusic(R.raw.main);
+    }
+
+    @Override
+    public void onExit() {
+        Sound.stopMusic();
+    }
+
+    @Override
+    public void onPause() {
+        Sound.pauseMusic();
+    }
+
+    @Override
+    public void onResume() {
+        Sound.resumeMusic();
     }
 
 }

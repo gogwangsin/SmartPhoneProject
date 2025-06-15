@@ -68,6 +68,8 @@ public class JoyStick implements IGameObject {
             case MotionEvent.ACTION_MOVE:
 
                 pts = Metrics.fromScreen(event.getX(), event.getY());
+                if (!bgRect.contains(pts[0], pts[1])) return false;
+
                 float dx = Math.max(-bg_radius, Math.min(pts[0] - startX, bg_radius));
                 float dy = Math.max(-bg_radius, Math.min(pts[1] - startY, bg_radius));
                 double radius = Math.sqrt(dx * dx + dy * dy);

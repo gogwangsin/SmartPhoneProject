@@ -94,24 +94,24 @@ public class Scene {
             gobj.draw(canvas);
         }
 
-        if(GameView.drawsDebugStuffs){
-            // bboxPaint가 없으면 새로 만든다 (한 번만 생성됨)
-            if(bboxPaint == null) {
-                bboxPaint = new Paint();
-                bboxPaint.setStyle(Paint.Style.STROKE); // 테두리만 그리도록 설정
-                bboxPaint.setColor(Color.RED);
-                bboxPaint.setStrokeWidth(4);
-            }
-
-            // 모든 게임 오브젝트 순회
-            for(IGameObject gobj : gameObjects) {
-                // 충돌 영역을 가진 오브젝트라면
-                if (gobj instanceof IBoxCollidable){
-                    RectF rect = ((IBoxCollidable) gobj).getCollisionRect();
-                    canvas.drawRect(rect, bboxPaint);
-                }
-            }
-        }
+//        if(GameView.drawsDebugStuffs){
+//            // bboxPaint가 없으면 새로 만든다 (한 번만 생성됨)
+//            if(bboxPaint == null) {
+//                bboxPaint = new Paint();
+//                bboxPaint.setStyle(Paint.Style.STROKE); // 테두리만 그리도록 설정
+//                bboxPaint.setColor(Color.RED);
+//                bboxPaint.setStrokeWidth(4);
+//            }
+//
+//            // 모든 게임 오브젝트 순회
+//            for(IGameObject gobj : gameObjects) {
+//                // 충돌 영역을 가진 오브젝트라면
+//                if (gobj instanceof IBoxCollidable){
+//                    RectF rect = ((IBoxCollidable) gobj).getCollisionRect();
+//                    canvas.drawRect(rect, bboxPaint);
+//                }
+//            }
+//        }
     }
 
     protected static Paint bboxPaint;
