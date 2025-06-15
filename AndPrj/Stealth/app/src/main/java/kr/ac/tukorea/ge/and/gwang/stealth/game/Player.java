@@ -4,6 +4,7 @@ import android.database.MergeCursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.Log;
 
 import com.google.android.material.motion.MaterialBackHandler;
@@ -11,6 +12,8 @@ import com.google.android.material.motion.MaterialBackHandler;
 import java.util.HashMap;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IBoxCollidable;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.interfaces.IRecyclable;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
@@ -20,7 +23,7 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.Gauge;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 
-public class Player extends AnimSprite {
+public class Player extends AnimSprite implements IBoxCollidable {
 //public class Player extends Sprite {
     private static final String TAG = Player.class.getSimpleName();
 
@@ -70,6 +73,10 @@ public class Player extends AnimSprite {
     private static final float BULLET_OFFSET_X = 100f;
     private static final float BULLET_OFFSET_Y = 8f;
     private Gauge gauge = new Gauge(0.1f, R.color.enemy_gauge_bg, R.color.enemy_gauge_fg);
+    private Player player;
+    protected RectF collisionRect = new RectF();
+
+
     public Player (JoyStick joyStick, int mipmapID){
 //        super(R.mipmap.obj_purple_side);
 //        super(R.mipmap.sp_shoot_purple, 20, 5);
@@ -80,6 +87,8 @@ public class Player extends AnimSprite {
         // == 5프레임을 0.25초 안에 보여줘야 한다.
         // fps = (총 프레임 수)/(애니메이션 시간) = (5)/(0.25) = 20
         // -> 총알 발사 간격이 0.25초 동안 5프레임 애니메이션 적용하려면 fps는 20
+
+        this.player = this;
 
         createAirplane(mipmapID);
 
@@ -97,7 +106,12 @@ public class Player extends AnimSprite {
         // -> 지금은 AnimSprite 기준으로 막는 범위 정한거
         // -> 총 쏘는 애니메이션 그림이 살짝 왼쪽으로 쏠려있어서 그럼
         // -> 그냥 Sprite로 그릴 땐 위의 조건 사용
+        updateCollisionRect();
 
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     private void createAirplane(int mipmapID) {
@@ -137,7 +151,7 @@ public class Player extends AnimSprite {
 
         fireCoolTime -= GameView.frameTime;
         if( fireCoolTime <= 0 ){
-            fireBullet();
+//            fireBullet();
             fireCoolTime = FIRE_INTERVAL;
         }
 
@@ -146,6 +160,7 @@ public class Player extends AnimSprite {
             applyGravity();
             AirPlane.setPosition(x- 30, y + 70, 100);
             PlaneEffect.setPosition(x - 200, y + 80, 100);
+            updateCollisionRect();
 
             return;
         }
@@ -174,6 +189,7 @@ public class Player extends AnimSprite {
             setPosition(x, y, RADIUS);
             AirPlane.setPosition(x - 30, y + 70, 100);
             PlaneEffect.setPosition(x - 200, y + 80, 100);
+            updateCollisionRect();
 
         }
     }
@@ -241,5 +257,14 @@ public class Player extends AnimSprite {
         AirPlane.draw(canvas);
         PlaneEffect.draw(canvas);
         gauge.draw(canvas, x - RADIUS, y - RADIUS - 20.f, width, fireCoolTime / FIRE_INTERVAL);
+    }
+
+    private void updateCollisionRect(){
+        collisionRect.set(dstRect);
+        collisionRect.inset(15f, 15f);
+    }
+
+    public RectF getCollisionRect() {
+        return collisionRect;
     }
 }

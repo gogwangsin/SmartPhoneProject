@@ -103,6 +103,9 @@ public class MainScene extends Scene {
         checkCollision();
     }
 
+    public Player getPlayer() {
+        return this.player;
+    }
     public void addScore(int amount) {
         score.add(amount);
     }
@@ -166,6 +169,28 @@ public class MainScene extends Scene {
 //                    removed = true;
                     break;
                     // break: 한 번 충돌했으면 더 이상 이 적에 대해 검사하지 않음
+                }
+            }
+
+            // Player vs Enemy 충돌 검사
+            Player player = MainScene.getInstance().getPlayer(); // 또는 this.player
+            for (int i = gameObjects.size() - 1; i >= 0; i--) {
+                IGameObject obj = gameObjects.get(i);
+                if (!(obj instanceof Enemy)) continue;
+                Enemy enemy_2 = (Enemy) obj;
+
+                if (CollisionHelper.collides(player, enemy_2)) {
+                    // 플레이어와 적 둘 다 제거
+                    remove(enemy_2);
+
+                    // 이펙트 추가
+                    EffectVFX effect = new EffectVFX(R.mipmap.vfx14, 10,5);
+                    effect.setPosition(player.GetX(), player.GetY(), 300);
+                    Scene.top().add(effect);
+
+//                    // 게임 오버 처리 - 필요 시 Scene 전환 또는 상태 변경
+//                    MainScene.getInstance().onGameOver();  // 따로 정의한 메서드가 필요
+                    break;
                 }
             }
         }
