@@ -284,6 +284,14 @@ public class Player extends AnimSprite implements IBoxCollidable {
         Scene.top().add(bullet);
     }
 
+    public void FireRainMissiles() {
+        MainScene scene = (MainScene) Scene.top();
+        if (scene == null) return;
+
+        scene.add(new RainMissileBullet());
+
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);

@@ -67,17 +67,25 @@ public class MainScene extends Scene {
         score.setScore(0);
         add(score);
 
+        Sprite s1 = new Sprite(R.mipmap.icon_01);
+        s1.setPosition(150f, 800f, 85f);
+        add(s1);
+        Sprite s2 = new Sprite(R.mipmap.icon_01);
+        s2.setPosition(330f, 800f, 85f);
+        add(s2);
+
         button1 = new Button(R.mipmap.obj_missile_bullet,
                 150f, 800f, 150f, 150f, new Button.OnTouchListener() {
-            @Override
-            public boolean onTouch(boolean pressed) {
-                return false;
+            @Override            public boolean onTouch(boolean pressed) {
+                Log.d("BUTTON", "Missile button pressed: " + pressed);
+                if (pressed) player.FireRainMissiles(); // 눌릴 때만 발사
+                return true; // 이벤트 처리 완료됨을 알림
             }
         });
         add(button1);
 
         button2 = new Button(R.mipmap.obj_red_bullet,
-                400f, 800f, 150f, 150f, new Button.OnTouchListener() {
+                330f, 800f, 150f, 150f, new Button.OnTouchListener() {
             @Override
             public boolean onTouch(boolean pressed) {
                 Log.d("BUTTON", "Missile button pressed: " + pressed);
