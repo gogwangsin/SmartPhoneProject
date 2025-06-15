@@ -65,7 +65,7 @@ public class Sound {
             soundIdMap.put(resId, soundId);
         }
         // int streamId =
-        pool.play(soundId, 1f, 1f, 1, 0, 1f);
+        pool.play(soundId, 3.f, 3.f, 1, 0, 1f);
     }
 
     // SoundPool이 없으면 새로 생성

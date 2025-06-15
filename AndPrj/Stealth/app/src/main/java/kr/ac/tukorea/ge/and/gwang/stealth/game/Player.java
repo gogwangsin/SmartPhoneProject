@@ -4,13 +4,17 @@ import android.database.MergeCursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.google.android.material.motion.MaterialBackHandler;
+
+import java.util.HashMap;
 
 import kr.ac.tukorea.ge.and.gwang.stealth.R;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.AnimSprite;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.JoyStick;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.objects.Sprite;
+import kr.ac.tukorea.ge.spgp2025.a2dg.framework.res.Sound;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.scene.Scene;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.util.Gauge;
 import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.GameView;
@@ -19,6 +23,32 @@ import kr.ac.tukorea.ge.spgp2025.a2dg.framework.view.Metrics;
 public class Player extends AnimSprite {
 //public class Player extends Sprite {
     private static final String TAG = Player.class.getSimpleName();
+
+    // 캐릭터용 리소스 ID 배열 (캐릭터 선택용)
+    public static final int[] CHARACTER_IDS = {
+            R.mipmap.sp_shoot_purple,
+            R.mipmap.sp_shoot_white,
+            R.mipmap.yellow_shoot,
+            R.mipmap.brown_shoot,
+            // 추가 캐릭터가 있다면 여기에 넣기
+    };
+//
+//    // 캐릭터 이름 및 기타 정보 담는 클래스
+//    public static class CharacterInfo {
+//        public final String name;
+//        public CharacterInfo(String name) {
+//            this.name = name;
+//        }
+//    }
+//
+//    // 캐릭터 ID와 정보 맵
+//    public static final HashMap<Integer, CharacterInfo> CharacterInfoMap = new HashMap<>();
+//    static {
+//        CharacterInfoMap.put(R.mipmap.sp_shoot_purple, new CharacterInfo("Purple Cookie"));
+//        CharacterInfoMap.put(R.mipmap.sp_shoot_white, new CharacterInfo("White Cookie"));
+//        CharacterInfoMap.put(R.mipmap.yellow_shoot, new CharacterInfo("Yellow Cookie"));
+//        CharacterInfoMap.put(R.mipmap.brown_shoot, new CharacterInfo("Brown Cookie"));
+//    }
 
     private static final float SPEED_X = 700.f;
     private static final float SPEED_Y = 500.f;
@@ -43,7 +73,9 @@ public class Player extends AnimSprite {
     public Player (JoyStick joyStick, int mipmapID){
 //        super(R.mipmap.obj_purple_side);
 //        super(R.mipmap.sp_shoot_purple, 20, 5);
+
         super(mipmapID, Math.round(5 / FIRE_INTERVAL), 5);
+        Log.d(TAG, "Creating Player with resId=" + mipmapID);
         // - 애니메이션 프레임이 5개이고, 0.25초 동안 애니메이션이 끝나는 경우( 발사 간격 )
         // == 5프레임을 0.25초 안에 보여줘야 한다.
         // fps = (총 프레임 수)/(애니메이션 시간) = (5)/(0.25) = 20
@@ -71,17 +103,41 @@ public class Player extends AnimSprite {
     private void createAirplane(int mipmapID) {
         if (mipmapID == R.mipmap.sp_shoot_purple) {
             AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
-            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
-            Effect.setPosition(x, y, 100);
-            PlaneEffect = Effect;
+//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
+//            Effect.setPosition(x, y, 100);
+//            PlaneEffect = Effect;
         }
+        else if (mipmapID == R.mipmap.sp_shoot_white){
+            AirPlane = new Sprite(R.mipmap.obj_white_plane, x, y, 100, 100);
+//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_3, 10f, 5);
+//            Effect.setPosition(x, y, 100);
+//            PlaneEffect = Effect;
+        }
+        else if (mipmapID == R.mipmap.yellow_shoot) {
+            AirPlane = new Sprite(R.mipmap.obj_yellow_plane, x, y, 100, 100);
+//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_2, 10f, 5);
+//            Effect.setPosition(x, y, 100);
+//            PlaneEffect = Effect;
+        }
+        else if (mipmapID == R.mipmap.brown_shoot){
+            AirPlane = new Sprite(R.mipmap.obj_brown_plane, x, y, 100, 100);
+//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_6, 10f, 5);
+//            Effect.setPosition(x, y, 100);
+//            PlaneEffect = Effect;
+        }
+        else {
+            AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
+        }
+        AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
+        Effect.setPosition(x, y, 100);
+        PlaneEffect = Effect;
     }
 
     public void update(){
 
         fireCoolTime -= GameView.frameTime;
         if( fireCoolTime <= 0 ){
-//            fireBullet();
+            fireBullet();
             fireCoolTime = FIRE_INTERVAL;
         }
 
@@ -175,6 +231,7 @@ public class Player extends AnimSprite {
 //        scene.add(bullet);
 
         Scene.top().add(bullet);
+        Sound.playEffect(R.raw.jelly);
     }
 
     @Override

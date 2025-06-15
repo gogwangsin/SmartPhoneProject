@@ -100,7 +100,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
         int last = sceneStack.size() - 1;
         if (last < 0) return;
         sceneStack.get(last).onExit();
-        sceneStack.add(scene);
+        sceneStack.add(last, scene);
         scene.onEnter();
     }
     public Scene getTopScene() {

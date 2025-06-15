@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            startActivity(new Intent(this, StealthActivity.class));
+//            startActivity(new Intent(this, StealthActivity.class));
+//            startActivity(new Intent(this, CharacterSelectActivity.class));
+            startActivity(new Intent(this, ChooseActivity.class));
         }
 
         return super.onTouchEvent(event);

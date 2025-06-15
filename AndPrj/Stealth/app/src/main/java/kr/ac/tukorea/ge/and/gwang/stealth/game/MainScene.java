@@ -33,7 +33,7 @@ public class MainScene extends Scene {
 
 //    private static final String TAG = MainScene.class.getSimpleName();
 
-    public MainScene() {
+    public MainScene(int characterIndex) {
         Metrics.setGameSize(1600, 900);
 
         GameView.drawsDebugStuffs = BuildConfig.DEBUG;
@@ -47,7 +47,15 @@ public class MainScene extends Scene {
                 100
         );
 
-        this.player = new Player(joyStick, R.mipmap.sp_shoot_purple);
+        // 캐릭터 인덱스에 따라 리소스 선택
+        int[] playerResIds = {
+                R.mipmap.sp_shoot_purple,
+                R.mipmap.sp_shoot_white,
+                R.mipmap.yellow_shoot,
+                R.mipmap.brown_shoot,
+        };
+
+        this.player = new Player(joyStick, playerResIds[characterIndex]);
         add(player);
         add(new EnemyGenerator());
 
@@ -76,6 +84,14 @@ public class MainScene extends Scene {
         add(button2);
 
         add(joyStick);
+
+        add(new Button(R.mipmap.btn_pause, 1500f, 100f, 100f, 100f, new Button.OnTouchListener() {
+            @Override
+            public boolean onTouch(boolean pressed) {
+                new PauseScene().push();
+                return false;
+            }
+        }));
     }
 
     @Override
@@ -128,6 +144,7 @@ public class MainScene extends Scene {
 
                     boolean dead = enemy.decreaseLife(bullet.getPower());
                     if (dead){
+                        Sound.playEffect(R.raw.jump1);
                         remove(enemy);
                         addScore(enemy.getScore());
                         EffectVFX effect = new EffectVFX(R.mipmap.vfx_7, 5,6);
