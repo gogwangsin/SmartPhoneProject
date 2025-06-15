@@ -31,6 +31,8 @@ public class MainScene extends Scene {
     private Button button1;
     private Button button2;
 
+    private static MainScene instance;
+
 //    private static final String TAG = MainScene.class.getSimpleName();
 
     public MainScene(int characterIndex) {
@@ -38,6 +40,7 @@ public class MainScene extends Scene {
 
         GameView.drawsDebugStuffs = BuildConfig.DEBUG;
         // 디버그 빌드일 때만 나오게 한다
+        instance = this;
 
         add(new HorzScrollBackground(R.mipmap.bg_digital, 200));
 
@@ -88,7 +91,7 @@ public class MainScene extends Scene {
         add(new Button(R.mipmap.btn_pause, 1500f, 100f, 100f, 100f, new Button.OnTouchListener() {
             @Override
             public boolean onTouch(boolean pressed) {
-                new PauseScene().push();
+                new PauseScene(characterIndex).push();
                 return false;
             }
         }));
@@ -105,6 +108,11 @@ public class MainScene extends Scene {
     }
     public int getScore() {
         return score.getScore();
+    }
+
+
+    public static MainScene getInstance() {
+        return instance;
     }
 
     private void checkCollision() {
