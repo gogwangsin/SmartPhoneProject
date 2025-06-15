@@ -10,7 +10,7 @@ public class HeartUI implements IGameObject {
     private final Sprite fullHeart;
     private final Sprite emptyHeart;
 
-    private static final int MAX_LIFE = 5; // 최대 하트 수
+    private static int MAX_LIFE = 5; // 최대 하트 수
     private static final float START_X = 100f;
     private static final float START_Y = 50f;
     private static final float SPACING = 60f;
@@ -19,6 +19,7 @@ public class HeartUI implements IGameObject {
         this.player = player;
         this.fullHeart = new Sprite(R.mipmap.ui_full_heart);
         this.emptyHeart = new Sprite(R.mipmap.ui_empty_heart);
+        MAX_LIFE = player.GetMaxLife();
     }
 
     @Override

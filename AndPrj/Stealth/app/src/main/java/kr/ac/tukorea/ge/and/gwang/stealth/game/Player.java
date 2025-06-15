@@ -54,8 +54,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
 //        CharacterInfoMap.put(R.mipmap.brown_shoot, new CharacterInfo("Brown Cookie"));
 //    }
 
-    private static final float SPEED_X = 700.f;
-    private static final float SPEED_Y = 500.f;
+    private static float SPEED_X = 700.f;
+    private static float SPEED_Y = 500.f;
     private static final float RADIUS = 80f;
     private static final float GRAVITY = 500f;
     private static int MAX_LIFE = 5;
@@ -71,7 +71,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private Sprite AirPlane;
     private AnimSprite PlaneEffect;
 
-    private static final float FIRE_INTERVAL = 0.25f;
+    private static float FIRE_INTERVAL = 0.25f;
     private float fireCoolTime = FIRE_INTERVAL;
     private static final float BULLET_OFFSET_X = 100f;
     private static final float BULLET_OFFSET_Y = 8f;
@@ -117,34 +117,42 @@ public class Player extends AnimSprite implements IBoxCollidable {
     public Player getPlayer() {
         return this.player;
     }
-
+    public int GetMaxLife() { return MAX_LIFE; }
     private void createAirplane(int mipmapID) {
         if (mipmapID == R.mipmap.sp_shoot_purple) {
             AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
-//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
-//            Effect.setPosition(x, y, 100);
-//            PlaneEffect = Effect;
+            MAX_LIFE = 5;
+            SPEED_X = 700f;
+            SPEED_Y = 500f;
+            FIRE_INTERVAL = 0.25f;
         }
         else if (mipmapID == R.mipmap.sp_shoot_white){
             AirPlane = new Sprite(R.mipmap.obj_white_plane, x, y, 100, 100);
-//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_3, 10f, 5);
-//            Effect.setPosition(x, y, 100);
-//            PlaneEffect = Effect;
+            MAX_LIFE = 3;
+            SPEED_X = 900f;
+            SPEED_Y = 600f;
+            FIRE_INTERVAL = 0.15f;
         }
         else if (mipmapID == R.mipmap.yellow_shoot) {
             AirPlane = new Sprite(R.mipmap.obj_yellow_plane, x, y, 100, 100);
-//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_2, 10f, 5);
-//            Effect.setPosition(x, y, 100);
-//            PlaneEffect = Effect;
+            MAX_LIFE = 4;
+            SPEED_X = 1000f;
+            SPEED_Y = 300f;
+            FIRE_INTERVAL = 0.4f;
         }
         else if (mipmapID == R.mipmap.brown_shoot){
             AirPlane = new Sprite(R.mipmap.obj_brown_plane, x, y, 100, 100);
-//            AnimSprite Effect = new AnimSprite(R.mipmap.vfx_6, 10f, 5);
-//            Effect.setPosition(x, y, 100);
-//            PlaneEffect = Effect;
+            MAX_LIFE = 7;
+            SPEED_X = 500f;
+            SPEED_Y = 400f;
+            FIRE_INTERVAL = 0.35f;
         }
         else {
             AirPlane = new Sprite(R.mipmap.obj_purple_plane, x, y, 100, 100);
+            MAX_LIFE = 5;
+            SPEED_X = 700f;
+            SPEED_Y = 500f;
+            FIRE_INTERVAL = 0.25f;
         }
         CURRENT_LIFE = MAX_LIFE;
         AnimSprite Effect = new AnimSprite(R.mipmap.vfx_4, 10f, 7);
