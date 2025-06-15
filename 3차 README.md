@@ -47,9 +47,16 @@
 
 ## 🎮 4. 개발에 사용된 기술 및 내용
 - **사용된 기술**
+  </br> Android Studio (Java), </br> Choreographer를 활용한 프레임 업데이트, </br> Sprite 기반 애니메이션 처리, </br> 오브젝트 풀링(Object Recycling)을 통한 메모리 최적화, </br> Joystick 입력 처리, </br> 충돌 판정(Collision Detection), </br> HorzScrollBackground, </br> Bitmap Pool을 활용한 이미지 리소스 재사용 및 메모리 최적화, </br> Scene 기반 Game Framework를 활용한 상태 전환 및 관리
+  
 - **참고한 것들**
+  </br> GitHub에 공개된 학습용 안드로이드 게임 프로젝트, </br> ChatGPT를 통한 코드 구조 설계 및 디버깅 아이디어 조언
+  
 - **수업내용에서 차용한 것**
+  </br> 드래곤플라이트의 EnemyGenerator, </br> 쿠키런의 Game Framework, HorzScrolling, </br> CollisionCheck, </br> AnimSprite, </br> Joystick 
 - **직접 개발한 것**
+  </br> 캐릭터 선택 시스템과 조작 UI 구성, </br> 적기 출현 및 제거 로직, 점수 시스템. </br> 체력, 점수 등의 인게임 UI 구성, </br> 플레이어 비행기의 상하좌우 이동 및 자동 총알 발사 구현, </br> 캐릭터별 속도, 공격력, 체력 등 밸런싱 조정
+  
 
 ## 🎮 5. 아쉬웠던 점, 보충할 것, 해결하지 못 한 문제
 - **하고 싶었지만 못 한 것들**
