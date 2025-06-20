@@ -156,20 +156,29 @@ ________________________________________________________________________________
 - 행동 트리
 
 **나머지 활용 기능**
-- 액터 컴포넌트
+- 액터 컴포넌트 ㅇ
 - 컨스트럭션 스크립트
-- 입력 시스템
-- 게임 플레이 프레임워크
+- 입력 시스템 ㅇ
+- 게임 플레이 프레임워크 ㅇ
 - 랜드스케이프
-- 이벤트 디스패치
+- 이벤트 디스패치 ㅇ
 - 블루프린트 인터페이스
-- UMG
+- UMG ㅇ
 
 
 </br>
 
-**액터 컴포넌트**
+**액터 컴포넌트 + 이벤트 디스패치**
 </br>
+-> NPC가 밤으로 변경할 때 Spot Light한테 메시지를 전송해서 보스나 NPC에게 빛을 비추게 했습니다.
+<img width="809" alt="a4" src="https://github.com/user-attachments/assets/9030249f-259b-49e1-bc78-b4ab3a4403ca" />
+<img width="686" alt="액터1" src="https://github.com/user-attachments/assets/3a032e1f-c9b0-45fb-9e0c-f1cd24ccf73e" />
+<img width="805" alt="108" src="https://github.com/user-attachments/assets/797dda80-ef9f-4f1c-9775-515d1c7c5c7d" />
+<img width="1115" alt="d2" src="https://github.com/user-attachments/assets/50b6aaf9-84d7-40cc-a1e2-d3ba0a56c87e" />
+<img width="1111" alt="a3" src="https://github.com/user-attachments/assets/286175b4-66ad-41ce-a58e-ea13808e0950" />
+
+
+
 
 </br>
 
