@@ -143,10 +143,79 @@ ________________________________________________________________________________
 <img width="569" alt="a7" src="https://github.com/user-attachments/assets/21f02c92-6a75-47e1-bcc9-1aee79e4d3fe" />
 <img width="680" alt="a8" src="https://github.com/user-attachments/assets/6c7f55e1-8dca-4139-a639-ed7279e5d5d6" />
 
+---
+
+## 📝 평가표에 제시된 언리얼 기능 활용 여부
+**앞서 설명한 부분**
+- 블루프린트 클래스
+- 레벨 블루프린트
+- 애니메이션 몽타주
+- 머티리얼 인스턴스
+- 라이팅
+- 직접 통신
+- 행동 트리
+
+**나머지 활용 기능**
+- 액터 컴포넌트
+- 컨스트럭션 스크립트
+- 입력 시스템
+- 게임 플레이 프레임워크
+- 랜드스케이프
+- 이벤트 디스패치
+- 블루프린트 인터페이스
+- UMG
+
+---
+</br>
+액터 컴포넌트
+</br>
+
+</br>
+컨스트럭션 스크립트
+</br>
+
+</br>
+
+**입력 시스템 + 플레이어 콤보 Montage**
+</br>
+<img width="728" alt="IN1" src="https://github.com/user-attachments/assets/1076a57b-c771-485d-894b-6b928a54e261" />
+<img width="658" alt="IN2" src="https://github.com/user-attachments/assets/1dce810d-4e54-45cc-b2ef-cb3a303da13b" />
+<img width="656" alt="IN3" src="https://github.com/user-attachments/assets/1bb0384c-947a-4252-bf66-d1380392e50a" />
 
 
+</br>
+
+**게임 플레이 프레임워크**
+</br>
+<img width="911" alt="프레임워크1" src="https://github.com/user-attachments/assets/06563868-9e42-4cab-8c96-f034f8c7d41b" />
+<img width="662" alt="프레임워크2" src="https://github.com/user-attachments/assets/64427958-ec21-4b8f-bf41-d87f8347cc10" />
+<img width="638" alt="프레임워크3" src="https://github.com/user-attachments/assets/0ed6b115-a286-4a48-81f9-a87c7d44aa3e" />
+<img width="512" alt="프레임워크4" src="https://github.com/user-attachments/assets/affc85aa-7336-49fb-9491-a58d008ce25f" />
+<img width="693" alt="프레임워크_5" src="https://github.com/user-attachments/assets/7a2c3faf-159f-49b8-9778-26d3671ebafa" />
+<img width="741" alt="프레임워크6" src="https://github.com/user-attachments/assets/e3a11a35-94a5-405e-bff1-bbb3e9743f9d" />
+
+</br>
+랜드스케이프
+</br>
+
+</br>
+이벤트 디스패치
+</br>
+
+</br>
+블루프린트 인터페이스
+</br>
+
+</br>
+
+**UMG**
+</br>
+-> Player를 바인딩해서 체력 동기화
+<img width="896" alt="UMG1" src="https://github.com/user-attachments/assets/73b7bc9a-9937-4d1e-aea2-c8074ead5456" />
+<img width="585" alt="UMG2" src="https://github.com/user-attachments/assets/91e4cdf1-59e7-4c9d-89e1-d9070bc6eb54" />
 
 
+</br>
 
 
 
