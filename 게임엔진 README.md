@@ -157,15 +157,13 @@ ________________________________________________________________________________
 
 **나머지 활용 기능**
 - 액터 컴포넌트 ㅇ
-- 컨스트럭션 스크립트
+- 컨스트럭션 스크립트 x
 - 입력 시스템 ㅇ
 - 게임 플레이 프레임워크 ㅇ
-- 랜드스케이프
+- 랜드스케이프 x
 - 이벤트 디스패치 ㅇ
-- 블루프린트 인터페이스
+- 블루프린트 인터페이스 ㅇ
 - UMG ㅇ
-
-
 </br>
 
 **액터 컴포넌트 + 이벤트 디스패치**
@@ -176,15 +174,6 @@ ________________________________________________________________________________
 <img width="805" alt="108" src="https://github.com/user-attachments/assets/797dda80-ef9f-4f1c-9775-515d1c7c5c7d" />
 <img width="1115" alt="d2" src="https://github.com/user-attachments/assets/50b6aaf9-84d7-40cc-a1e2-d3ba0a56c87e" />
 <img width="1111" alt="a3" src="https://github.com/user-attachments/assets/286175b4-66ad-41ce-a58e-ea13808e0950" />
-
-
-
-
-</br>
-
-**컨스트럭션 스크립트**
-</br>
-
 </br>
 
 **RPG 입력 시스템 + 플레이어 콤보 Montage**
@@ -193,10 +182,7 @@ ________________________________________________________________________________
 <img width="728" alt="IN1" src="https://github.com/user-attachments/assets/1076a57b-c771-485d-894b-6b928a54e261" />
 <img width="658" alt="IN2" src="https://github.com/user-attachments/assets/1dce810d-4e54-45cc-b2ef-cb3a303da13b" />
 <img width="656" alt="IN3" src="https://github.com/user-attachments/assets/1bb0384c-947a-4252-bf66-d1380392e50a" />
-
-
 </br>
----
 
 **게임 플레이 프레임워크**
 </br>
@@ -206,22 +192,14 @@ ________________________________________________________________________________
 <img width="512" alt="프레임워크4" src="https://github.com/user-attachments/assets/affc85aa-7336-49fb-9491-a58d008ce25f" />
 <img width="693" alt="프레임워크_5" src="https://github.com/user-attachments/assets/7a2c3faf-159f-49b8-9778-26d3671ebafa" />
 <img width="741" alt="프레임워크6" src="https://github.com/user-attachments/assets/e3a11a35-94a5-405e-bff1-bbb3e9743f9d" />
-
-</br>
-
-**랜드스케이프**
-</br>
-
-</br>
-
-**이벤트 디스패치**
-</br>
-
 </br>
 
 **블루프린트 인터페이스**
 </br>
-
+-> Player와 충돌하면 Farming을 호출하면 Interface를 갖는 GS_Heart가 자기가 정의한 함수를 통해 회복 이펙트를 실행하고 사라진다. 
+<img width="973" alt="화면 캡처 2025-06-20 191726" src="https://github.com/user-attachments/assets/12dfcbd9-845c-4b73-a026-df490dc7fdaa" />
+<img width="708" alt="화면 캡처 2025-06-20 191751" src="https://github.com/user-attachments/assets/d6ca7f26-5338-4bc0-ab77-758b8c130584" />
+<img width="920" alt="화면 캡처 2025-06-20 191813" src="https://github.com/user-attachments/assets/b0e5df26-ebe7-4743-b690-d98ee579a2a7" />
 </br>
 
 **UMG**
@@ -229,8 +207,6 @@ ________________________________________________________________________________
 -> Player를 바인딩해서 체력 동기화
 <img width="896" alt="UMG1" src="https://github.com/user-attachments/assets/73b7bc9a-9937-4d1e-aea2-c8074ead5456" />
 <img width="585" alt="UMG2" src="https://github.com/user-attachments/assets/91e4cdf1-59e7-4c9d-89e1-d9070bc6eb54" />
-
-
 </br>
 
 ---
