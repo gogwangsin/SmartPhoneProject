@@ -11,7 +11,7 @@
 - **Behavior Tree**를 활용한 **지능형 AI 몬스터** 구현
 - **카메라 쉐이크 및 Animation Notify**를 통한 타격감 강화
 - **낮/밤 조명 변화 및 머티리얼** 적용으로 **풍부한 시각적 분위기** 제공
-- **Cut Scne 연출**을 통해 **보스전 진입 시 몰입도 향상**
+- **Cut Scene 연출**을 통해 **보스전 진입 시 몰입도 향상**
 
 ---
 
@@ -24,7 +24,7 @@
 ## 밤 라이트 + 바다 머티리얼 ## 
 <img width="808" alt="화면 캡처 2025-06-20 145608" src="https://github.com/user-attachments/assets/db77f381-02c0-4201-b3fe-8a05779f6ae2" />
 
-## 보스전 Cut Scne ##
+## 보스전 Cut Scene ##
 <img width="689" alt="기획2" src="https://github.com/user-attachments/assets/371e254d-de33-4654-9cde-bcff8e393149" />
 
 
