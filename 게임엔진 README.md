@@ -53,20 +53,33 @@ ________________________________________________________________________________
 ---
 
 ## 블루프린트 구조, 직접 구현한 기능, 기술적 어려움과 해결 방법 ## 
-**AI + BT + Montage Notify**
+
 </br>
+
+---
+1. 스킬 노티파이
+2. 컷씬 Cut Scene + 직접 통신
+3. 낮밤 NPC + 라이팅, 다이나믹 머티리얼
+4. 카메라쉐이크
+5. BGM
+6. AI + Behavior Tree + Montage Notify
 
 ---
 **스킬 노티파이**
 </br>
 
----
-**밤낮 조정 + BP_SKySphere**
-</br>
+<img width="653" alt="스킬" src="https://github.com/user-attachments/assets/6a98a4aa-b617-4c6a-8045-b8a529375b23" />
+<img width="718" alt="스킬2" src="https://github.com/user-attachments/assets/07c418fe-4526-4073-99bb-863664f0e138" />
+<img width="752" alt="스킬3" src="https://github.com/user-attachments/assets/105c335e-06df-4070-8341-e65aafa5cb49" />
+
 
 ---
-**컷씬 Cut Scene**
+**컷씬 Cut Scene + 직접 통신**
 </br>
+<img width="773" alt="컷씬1" src="https://github.com/user-attachments/assets/31a68436-180c-451f-9f28-661b565bfeaf" />
+<img width="1118" alt="컷씬2" src="https://github.com/user-attachments/assets/3aac8cc5-860b-4349-b73e-0cc4be9a70d9" />
+<img width="934" alt="cut3" src="https://github.com/user-attachments/assets/bd144982-cf7a-42c3-8750-9a593d28e936" />
+
 
 ---
 **낮밤 NPC + 라이팅, 다이나믹 머티리얼**
@@ -97,6 +110,17 @@ ________________________________________________________________________________
 <img width="874" alt="Sound2" src="https://github.com/user-attachments/assets/81abac06-78bd-4ed7-9999-a7ab1a7ff59c" />
 
 
+---
+**AI + Behavior Tree + Montage Notify**
+</br>
+
+<img width="629" alt="a_1" src="https://github.com/user-attachments/assets/2f6aab11-b3d4-46a1-9b5b-fd24d01f2d5c" />
+<img width="1080" alt="a_2" src="https://github.com/user-attachments/assets/3768c325-cc94-4814-a441-f429c3758720" />
+<img width="886" alt="a" src="https://github.com/user-attachments/assets/32cd5c49-2b02-4aa1-b678-c6502cdbfd3b" />
+<img width="673" alt="a2" src="https://github.com/user-attachments/assets/db881194-ba79-4332-9fad-0700622c93ad" />
+<img width="1110" alt="a22" src="https://github.com/user-attachments/assets/11730606-a251-409b-9924-8c42668c1e2d" />
+<img width="691" alt="a3" src="https://github.com/user-attachments/assets/e3763703-ca12-4858-a38b-a5352b43fc9e" />
+<img width="716" alt="a4" src="https://github.com/user-attachments/assets/24afa1bd-f786-403e-ade8-ae664dda4074" />
 
 
 
